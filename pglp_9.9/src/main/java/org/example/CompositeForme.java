@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class CompositeForme implements Composite {
   String nom;
-  ArrayList<Forme> groupe;
+  ArrayList<Composite> groupe;
 
   public CompositeForme(String name) {
     this.nom = name;
@@ -13,19 +13,24 @@ public class CompositeForme implements Composite {
 
   @Override
   public void print() {
-    for (Forme forme : groupe) {
+    for (Composite forme : groupe) {
       forme.print();
     }
   }
 
   @Override
   public void move(double x, double y) {
-    for (Forme forme : groupe) {
+    for (Composite forme : groupe) {
       forme.move(x, y);
     }
   }
 
-  public void add(Forme forme) {
+  @Override
+  public String returnName() {
+    return nom;
+  }
+
+  public void add(Composite forme) {
     this.groupe.add(forme);
   }
 
@@ -33,7 +38,7 @@ public class CompositeForme implements Composite {
     groupe.removeIf(forme -> nom.equals(forme.returnName()));
   }
 
-  public void remove(Forme forme) {
+  public void remove(Composite forme) {
     groupe.removeIf(forme1 -> forme1.equals(forme));
   }
 }

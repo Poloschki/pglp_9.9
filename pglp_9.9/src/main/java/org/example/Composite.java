@@ -5,4 +5,5 @@ public interface Composite {
 
   void move(double x, double y);
 
+  String returnName();
 }

@@ -23,10 +23,12 @@ public class Cercle implements Forme {
 
   @Override
   public String toString() {
-    return "Cercle{" +
-        "centre=" + centre.toString() +
-        ", rayon=" + rayon +
-        '}';
+    return "Cercle{"
+        + "centre="
+        + centre.toString()
+        + ", rayon="
+        + rayon
+        + '}';
   }
 
   @Override
