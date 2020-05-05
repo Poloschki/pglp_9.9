@@ -21,6 +21,11 @@ public class Triangle implements Forme {
   }
 
   @Override
+  public String returnName() {
+    return this.nom;
+  }
+
+  @Override
   public String toString() {
     return "Triangle(" + '\'' +
         ", p1=" + p1.toString() +

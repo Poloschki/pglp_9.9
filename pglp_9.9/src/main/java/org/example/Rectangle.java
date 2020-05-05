@@ -17,6 +17,11 @@ public class Rectangle implements Forme {
   }
 
   @Override
+  public String returnName() {
+    return this.nom;
+  }
+
+  @Override
   public String toString() {
     return "Rectangle(" + '\'' +
         ", HG=" + HG.toString() +

@@ -17,6 +17,11 @@ public class Cercle implements Forme {
   }
 
   @Override
+  public String returnName() {
+    return this.nom;
+  }
+
+  @Override
   public String toString() {
     return "Cercle{" +
         "centre=" + centre.toString() +
