@@ -5,9 +5,9 @@ public class Carre implements Forme {
   Point p1;
   double longueur;
 
-  public Carre(String nom, double x1, double y2, double longueur) {
+  public Carre(String nom, double x, double y, double longueur) {
     this.nom = nom;
-    this.p1 = new Point(x1, y2);
+    this.p1 = new Point(x, y);
     this.longueur = longueur;
 
   }

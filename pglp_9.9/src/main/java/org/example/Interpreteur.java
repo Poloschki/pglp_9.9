@@ -17,11 +17,20 @@ public class Interpreteur {
     compositeArrayList.removeIf(composite::equals);
   }
 
-  public void move() {
-
+  public Composite getComposite(String name) {
+    for (Composite composite : compositeArrayList) {
+      if (composite.returnName().equals(name)) return composite;
+    }
+    return null;
   }
 
-  public void create() {
-
+  public void updateComposite(Composite composite) {
+    int i = 0;
+    for (Composite compo : compositeArrayList) {
+      if (compo.returnName().equals(composite.returnName())) {
+        compositeArrayList.set(i, composite);
+      }
+      i++;
+    }
   }
 }
