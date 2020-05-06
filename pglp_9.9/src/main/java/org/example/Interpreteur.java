@@ -21,6 +21,7 @@ public class Interpreteur {
     for (Composite composite : compositeArrayList) {
       if (composite.returnName().equals(name)) return composite;
     }
+
     return null;
   }
 

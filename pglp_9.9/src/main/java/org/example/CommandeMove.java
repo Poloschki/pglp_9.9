@@ -42,11 +42,4 @@ public class CommandeMove implements Commande {
     this.name = this.val[0];
   }
 
-  @Override
-  public String toString() {
-    return "CommandeMove{" +
-        "interpreteur=" + interpreteur +
-        ", toExecute='" + toExecute + '\'' +
-        '}';
-  }
 }
