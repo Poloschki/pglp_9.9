@@ -13,10 +13,11 @@ public class CommandeAffectation implements Commande {
 
   public void executeCercle() {
     try {
+
       double x = Double.parseDouble(this.val[0]);
       double y = Double.parseDouble(this.val[1]);
       double rayon = Double.parseDouble(this.val[2]);
-      this.interpreteur.add(new Cercle(name, x, y, rayon));
+      this.interpreteur.add(new Cercle(this.name, x, y, rayon));
     } catch (IllegalArgumentException e) {
       System.err.println(e);
     }
@@ -75,14 +76,17 @@ public class CommandeAffectation implements Commande {
       case "rectangle":
         excuteRectangle();
         break;
+      default:
+        System.err.println("Forme non reconnus");
     }
+    System.out.println(this.interpreteur.toString());
   }
 
   @Override
   public void cutting() {
     int pos1, pos2;
     pos1 = this.toExecute.indexOf("=");
-    this.name = this.toExecute.substring(pos1);
+    this.name = this.toExecute.substring(0, pos1);
     this.name = this.name.replaceAll(" ", "");
     pos2 = this.toExecute.indexOf("(");
     this.type = this.toExecute.substring(pos1 + 1, pos2);

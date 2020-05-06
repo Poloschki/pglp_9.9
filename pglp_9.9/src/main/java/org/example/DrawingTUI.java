@@ -13,6 +13,8 @@ public class DrawingTUI {
 
   public void initalisation() {
     this.createdCommand.put("move", new CommandeMove(this.interpreteur));
+    this.createdCommand.put("=", new CommandeAffectation(this.interpreteur));
+    this.createdCommand.put("exit", new CommandeExit());
 
   }
 

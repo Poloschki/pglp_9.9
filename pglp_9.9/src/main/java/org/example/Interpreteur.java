@@ -33,4 +33,11 @@ public class Interpreteur {
       i++;
     }
   }
+
+  @Override
+  public String toString() {
+    return "Interpreteur{" +
+        "compositeArrayList=" + compositeArrayList +
+        '}';
+  }
 }

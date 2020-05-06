@@ -17,10 +17,10 @@ public class CommandeMove implements Commande {
   public void execute() {
     try {
       double x = Double.parseDouble(this.val[1]);
-      double y = Double.parseDouble(val[2]);
-      Composite composite = interpreteur.getComposite(name);
+      double y = Double.parseDouble(this.val[2]);
+      Composite composite = interpreteur.getComposite(this.name);
+
       composite.move(x, y);
-//      interpreteur.updateComposite(composite);
       composite.print();
 
     } catch (IllegalArgumentException e) {
