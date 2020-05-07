@@ -1,6 +1,5 @@
 package org.example;
 
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -12,9 +11,9 @@ public class CarreDAO extends DAO<Carre> {
       PreparedStatement preparedStatement = connect.prepareStatement(
           "INSERT INTO CARRE (nom,x,y ,longueur) VALUES(?,?,?,?)");
       preparedStatement.setString(1, obj.nom);
-      preparedStatement.setString(2, String.valueOf(obj.p1.x));
-      preparedStatement.setString(3, String.valueOf(obj.p1.y));
-      preparedStatement.setDate(4, Date.valueOf(String.valueOf(obj.longueur)));
+      preparedStatement.setDouble(2, obj.p1.x);
+      preparedStatement.setDouble(3, obj.p1.y);
+      preparedStatement.setDouble(4, obj.longueur);
 
       int result = preparedStatement.executeUpdate();
       assert result == 1;
@@ -26,7 +25,7 @@ public class CarreDAO extends DAO<Carre> {
 
   @Override
   public Carre find(String id) {
-    Carre carre = new Carre("nom", 1, 2, 3);
+    Carre carre = null;
     try {
       PreparedStatement preparedStatement = connect.prepareStatement(
           "SELECT * FROM CARRE WHERE nom = ?");
@@ -52,9 +51,9 @@ public class CarreDAO extends DAO<Carre> {
       PreparedStatement preparedStatement = connect.prepareStatement(
           "UPDATE CARRE set nom = ? and set x = ? and set y = ? and set longueur = ? WHERE nom = ?");
       preparedStatement.setString(1, obj.nom);
-      preparedStatement.setString(2, String.valueOf(obj.p1.x));
-      preparedStatement.setString(3, String.valueOf(obj.p1.y));
-      preparedStatement.setString(4, String.valueOf(obj.longueur));
+      preparedStatement.setDouble(2, obj.p1.x);
+      preparedStatement.setDouble(3, obj.p1.y);
+      preparedStatement.setDouble(4, obj.longueur);
       preparedStatement.setString(5, obj.nom);
       ResultSet resultSet = preparedStatement.executeQuery();
       if (resultSet.first()) {

@@ -5,6 +5,7 @@ import java.util.Scanner;
 public class DrawingApp {
 
   public static void main(String[] args) {
+
     DrawingApp drawingApp = new DrawingApp();
     drawingApp.run();
   }
