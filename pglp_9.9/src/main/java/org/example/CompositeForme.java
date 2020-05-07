@@ -13,9 +13,11 @@ public class CompositeForme implements Composite {
 
   @Override
   public void print() {
+    System.out.println("Groupe : " + nom + "{");
     for (Composite forme : groupe) {
       forme.print();
     }
+    System.out.println("}");
   }
 
   @Override

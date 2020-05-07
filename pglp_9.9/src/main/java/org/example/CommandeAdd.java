@@ -22,6 +22,14 @@ public class CommandeAdd implements Commande {
           ((CompositeForme) composite).add(this.interpreteur.getComposite(this.val[1]));
           composite.print();
         }
+      } else {
+        composite = interpreteur.getComposite(this.name);
+        if (composite instanceof CompositeForme) {
+          //composite = this.interpreteur.getComposite(this.name);
+          ((CompositeForme) composite).add(this.interpreteur.getComposite(this.val[1]));
+          composite.print();
+        }
+
       }
     } catch (IllegalArgumentException e) {
       e.printStackTrace();

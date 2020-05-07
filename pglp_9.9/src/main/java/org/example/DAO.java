@@ -3,7 +3,7 @@ package org.example;
 import java.sql.Connection;
 
 public abstract class DAO<T> {
-  protected Connection connection;
+  protected Connection connect;
 
   public abstract T create(T obj);
 

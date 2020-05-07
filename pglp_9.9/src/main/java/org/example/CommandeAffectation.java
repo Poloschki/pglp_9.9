@@ -79,7 +79,7 @@ public class CommandeAffectation implements Commande {
       default:
         System.err.println("Forme non reconnus");
     }
-    System.out.println(this.interpreteur.toString());
+    System.out.println(this.interpreteur.compositeArrayList.get(this.interpreteur.compositeArrayList.size() - 1));
   }
 
   @Override

@@ -24,7 +24,8 @@ public class Carre implements Forme {
 
   @Override
   public String toString() {
-    return "Carre(" + '\'' +
+    return "Carre("
+        + "Nom : " + nom +
         ", p1=" + p1.toString() +
         ", longueur=" + longueur +
         ')';

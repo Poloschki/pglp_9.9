@@ -23,7 +23,7 @@ public class Rectangle implements Forme {
 
   @Override
   public String toString() {
-    return "Rectangle(" + '\'' +
+    return "Rectangle(" + nom +
         ", HG=" + HG.toString() +
         ", BD=" + BD.toString() +
         ')';
