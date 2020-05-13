@@ -13,7 +13,10 @@ public class Cercle implements Forme {
 
   @Override
   public void move(double x, double y) {
+
     this.centre.transpose(x, y);
+    CercleDAO cDAO = new CercleDAO();
+    cDAO.update(this);
   }
 
   @Override

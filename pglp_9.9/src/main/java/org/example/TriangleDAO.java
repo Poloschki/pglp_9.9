@@ -8,7 +8,7 @@ public class TriangleDAO extends DAO<Triangle> {
   @Override
   public Triangle create(Triangle obj) {
     try {
-      PreparedStatement preparedStatement = connect.prepareStatement(
+      PreparedStatement preparedStatement = gestionBD.conn.prepareStatement(
           "INSERT INTO TRIANGLE (nom,x1,y1,x2,y2,x3,y3) VALUES(?,?,?,?,?,?)");
       preparedStatement.setString(1, obj.nom);
       preparedStatement.setDouble(2, obj.p1.x);
@@ -30,7 +30,7 @@ public class TriangleDAO extends DAO<Triangle> {
   public Triangle find(String id) {
     Triangle triangle = null;
     try {
-      PreparedStatement preparedStatement = connect.prepareStatement(
+      PreparedStatement preparedStatement = gestionBD.conn.prepareStatement(
           "SELECT * FROM CARRE WHERE nom = ?");
       preparedStatement.setString(1, id);
       ResultSet resultSet = preparedStatement.executeQuery();
@@ -55,7 +55,7 @@ public class TriangleDAO extends DAO<Triangle> {
   public Triangle update(Triangle obj) {
     Triangle triangle = null;
     try {
-      PreparedStatement preparedStatement = connect.prepareStatement(
+      PreparedStatement preparedStatement = gestionBD.conn.prepareStatement(
           "UPDATE TRIANGLE set nom = ? and set x1 = ? and set y1 = ? and set x2 = ? and set y2 = ? and set x3 = ? and set y3 = ?  WHERE nom = ?");
       preparedStatement.setString(1, obj.nom);
       preparedStatement.setDouble(2, obj.p1.x);
@@ -86,7 +86,7 @@ public class TriangleDAO extends DAO<Triangle> {
   @Override
   public void delete(Triangle obj) {
     try {
-      PreparedStatement preparedStatement = connect.prepareStatement(
+      PreparedStatement preparedStatement = gestionBD.conn.prepareStatement(
           "DELETE FROM TRIANGLE where nom = ? ");
       preparedStatement.setString(1, obj.nom);
       int resultSet = preparedStatement.executeUpdate();

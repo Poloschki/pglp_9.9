@@ -7,8 +7,9 @@ import java.sql.SQLException;
 public class CercleDAO extends DAO<Cercle> {
   @Override
   public Cercle create(Cercle obj) {
+    gestionBD.connect();
     try {
-      PreparedStatement preparedStatement = connect.prepareStatement(
+      PreparedStatement preparedStatement = gestionBD.conn.prepareStatement(
           "INSERT INTO CERCLE (nom,x,y ,rayon) VALUES(?,?,?,?)");
       preparedStatement.setString(1, obj.nom);
       preparedStatement.setDouble(2, obj.centre.x);
@@ -20,6 +21,7 @@ public class CercleDAO extends DAO<Cercle> {
     } catch (SQLException throwable) {
       throwable.printStackTrace();
     }
+    gestionBD.disconnect();
     return obj;
   }
 
@@ -27,7 +29,7 @@ public class CercleDAO extends DAO<Cercle> {
   public Cercle find(String id) {
     Cercle cercle = null;
     try {
-      PreparedStatement preparedStatement = connect.prepareStatement(
+      PreparedStatement preparedStatement = gestionBD.conn.prepareStatement(
           "SELECT * FROM CERCLE WHERE nom = ?");
       preparedStatement.setString(1, id);
       ResultSet resultSet = preparedStatement.executeQuery();
@@ -47,8 +49,9 @@ public class CercleDAO extends DAO<Cercle> {
   @Override
   public Cercle update(Cercle obj) {
     Cercle cercle = null;
+    gestionBD.connect();
     try {
-      PreparedStatement preparedStatement = connect.prepareStatement(
+      PreparedStatement preparedStatement = gestionBD.conn.prepareStatement(
           "UPDATE CERCLE set nom = ? and set x = ? and set y = ? and set rayon = ? WHERE nom = ?");
       preparedStatement.setString(1, obj.nom);
       preparedStatement.setDouble(2, obj.centre.x);
@@ -68,20 +71,42 @@ public class CercleDAO extends DAO<Cercle> {
     } catch (SQLException e) {
       e.printStackTrace();
     }
+    gestionBD.disconnect();
     return cercle;
   }
 
   @Override
   public void delete(Cercle obj) {
+    gestionBD.connect();
     try {
-      PreparedStatement preparedStatement = connect.prepareStatement(
+      PreparedStatement preparedStatement = gestionBD.conn.prepareStatement(
           "DELETE FROM CERCLE where nom = ? ");
       preparedStatement.setString(1, obj.nom);
       int resultSet = preparedStatement.executeUpdate();
+      preparedStatement.close();
       assert resultSet == 1;
     } catch (SQLException e) {
       e.printStackTrace();
     }
+    gestionBD.disconnect();
+  }
 
+  public void createTable() {
+    gestionBD.connect();
+    try {
+      PreparedStatement preparedStatement = gestionBD.conn.prepareStatement(
+          "CREATE TABLE IF NOT EXISTS CERCLE( " +
+              "nom varchar(100) NOT NULL," +
+              "x int(4) NOT NULL," +
+              "y int(4) NOT NULL," +
+              "rayon int(4) NOT NULL," +
+              "PRIMARY KEY (nom));");
+      int set = preparedStatement.executeUpdate();
+      assert set == 1;
+      preparedStatement.close();
+      gestionBD.disconnect();
+    } catch (SQLException throwables) {
+      throwables.printStackTrace();
+    }
   }
 }

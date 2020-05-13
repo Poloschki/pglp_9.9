@@ -9,7 +9,7 @@ public class RectangleDAO extends DAO<Rectangle> {
   @Override
   public Rectangle create(Rectangle obj) {
     try {
-      PreparedStatement preparedStatement = connect.prepareStatement(
+      PreparedStatement preparedStatement = gestionBD.conn.prepareStatement(
           "INSERT INTO RECTANGLE (nom,xHG,yHG,xBD,yBD) VALUES(?,?,?,?,?)");
       preparedStatement.setString(1, obj.nom);
       preparedStatement.setDouble(2, obj.HG.x);
@@ -31,7 +31,7 @@ public class RectangleDAO extends DAO<Rectangle> {
   public Rectangle find(String id) {
     Rectangle rectangle = null;
     try {
-      PreparedStatement preparedStatement = connect.prepareStatement(
+      PreparedStatement preparedStatement = gestionBD.conn.prepareStatement(
           "SELECT * FROM RECTANGLE WHERE nom = ?");
       preparedStatement.setString(1, id);
       ResultSet resultSet = preparedStatement.executeQuery();
@@ -55,7 +55,7 @@ public class RectangleDAO extends DAO<Rectangle> {
   public Rectangle update(Rectangle obj) {
     Rectangle rectangle = null;
     try {
-      PreparedStatement preparedStatement = connect.prepareStatement(
+      PreparedStatement preparedStatement = gestionBD.conn.prepareStatement(
           "UPDATE RECTANGLE set nom = ? and set xHG = ? and set yHG = ? and set xBD = ? and set yBD = ? and WHERE nom = ?");
       preparedStatement.setString(1, obj.nom);
       preparedStatement.setDouble(2, obj.HG.x);
@@ -82,7 +82,7 @@ public class RectangleDAO extends DAO<Rectangle> {
   @Override
   public void delete(Rectangle obj) {
     try {
-      PreparedStatement preparedStatement = connect.prepareStatement(
+      PreparedStatement preparedStatement = gestionBD.conn.prepareStatement(
           "DELETE FROM RECTANGLE where nom = ? ");
       preparedStatement.setString(1, obj.nom);
       int resultSet = preparedStatement.executeUpdate();

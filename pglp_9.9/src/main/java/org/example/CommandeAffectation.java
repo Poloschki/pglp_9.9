@@ -17,7 +17,12 @@ public class CommandeAffectation implements Commande {
       double x = Double.parseDouble(this.val[0]);
       double y = Double.parseDouble(this.val[1]);
       double rayon = Double.parseDouble(this.val[2]);
-      this.interpreteur.add(new Cercle(this.name, x, y, rayon));
+
+      Cercle c = new Cercle(this.name, x, y, rayon);
+      CercleDAO cDAO = new CercleDAO();
+      cDAO.createTable();
+      cDAO.create(c);
+      this.interpreteur.add(c);
     } catch (IllegalArgumentException e) {
       System.err.println(e);
     }
@@ -66,6 +71,7 @@ public class CommandeAffectation implements Commande {
     switch (this.type) {
       case "cercle":
         executeCercle();
+
         break;
       case "triangle":
         executeTriangle();

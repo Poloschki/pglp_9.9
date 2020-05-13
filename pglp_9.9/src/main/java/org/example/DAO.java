@@ -1,9 +1,7 @@
 package org.example;
 
-import java.sql.Connection;
-
 public abstract class DAO<T> {
-  protected Connection connect;
+  protected GestionBD gestionBD = new GestionBD();
 
   public abstract T create(T obj);
 

@@ -8,7 +8,7 @@ public class CarreDAO extends DAO<Carre> {
   @Override
   public Carre create(Carre obj) {
     try {
-      PreparedStatement preparedStatement = connect.prepareStatement(
+      PreparedStatement preparedStatement = gestionBD.conn.prepareStatement(
           "INSERT INTO CARRE (nom,x,y ,longueur) VALUES(?,?,?,?)");
       preparedStatement.setString(1, obj.nom);
       preparedStatement.setDouble(2, obj.p1.x);
@@ -27,7 +27,7 @@ public class CarreDAO extends DAO<Carre> {
   public Carre find(String id) {
     Carre carre = null;
     try {
-      PreparedStatement preparedStatement = connect.prepareStatement(
+      PreparedStatement preparedStatement = gestionBD.conn.prepareStatement(
           "SELECT * FROM CARRE WHERE nom = ?");
       preparedStatement.setString(1, id);
       ResultSet resultSet = preparedStatement.executeQuery();
@@ -48,7 +48,7 @@ public class CarreDAO extends DAO<Carre> {
   public Carre update(Carre obj) {
     Carre carre = null;
     try {
-      PreparedStatement preparedStatement = connect.prepareStatement(
+      PreparedStatement preparedStatement = gestionBD.conn.prepareStatement(
           "UPDATE CARRE set nom = ? and set x = ? and set y = ? and set longueur = ? WHERE nom = ?");
       preparedStatement.setString(1, obj.nom);
       preparedStatement.setDouble(2, obj.p1.x);
@@ -74,7 +74,7 @@ public class CarreDAO extends DAO<Carre> {
   @Override
   public void delete(Carre obj) {
     try {
-      PreparedStatement preparedStatement = connect.prepareStatement(
+      PreparedStatement preparedStatement = gestionBD.conn.prepareStatement(
           "DELETE FROM CARRE where nom = ? ");
       preparedStatement.setString(1, obj.nom);
       int resultSet = preparedStatement.executeUpdate();
