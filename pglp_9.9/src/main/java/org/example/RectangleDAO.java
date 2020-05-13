@@ -8,6 +8,7 @@ public class RectangleDAO extends DAO<Rectangle> {
 
   @Override
   public Rectangle create(Rectangle obj) {
+    gestionBD.connect();
     try {
       PreparedStatement preparedStatement = gestionBD.conn.prepareStatement(
           "INSERT INTO RECTANGLE (nom,xHG,yHG,xBD,yBD) VALUES(?,?,?,?,?)");
@@ -23,12 +24,14 @@ public class RectangleDAO extends DAO<Rectangle> {
     } catch (SQLException throwable) {
       throwable.printStackTrace();
     }
+    gestionBD.disconnect();
     return obj;
 
   }
 
   @Override
   public Rectangle find(String id) {
+    gestionBD.connect();
     Rectangle rectangle = null;
     try {
       PreparedStatement preparedStatement = gestionBD.conn.prepareStatement(
@@ -47,21 +50,22 @@ public class RectangleDAO extends DAO<Rectangle> {
     } catch (SQLException e) {
       e.printStackTrace();
     }
+    gestionBD.disconnect();
     return rectangle;
 
   }
 
   @Override
   public Rectangle update(Rectangle obj) {
+    gestionBD.connect();
     Rectangle rectangle = null;
     try {
       PreparedStatement preparedStatement = gestionBD.conn.prepareStatement(
-          "UPDATE RECTANGLE set nom = ? and set xHG = ? and set yHG = ? and set xBD = ? and set yBD = ? and WHERE nom = ?");
-      preparedStatement.setString(1, obj.nom);
-      preparedStatement.setDouble(2, obj.HG.x);
-      preparedStatement.setDouble(3, obj.HG.y);
-      preparedStatement.setDouble(4, obj.BD.x);
-      preparedStatement.setDouble(5, obj.BD.y);
+          "UPDATE RECTANGLE set xHG = ? ,  yHG = ? ,xBD = ? , yBD = ?  WHERE nom = ?");
+      preparedStatement.setDouble(1, obj.HG.x);
+      preparedStatement.setDouble(2, obj.HG.y);
+      preparedStatement.setDouble(3, obj.BD.x);
+      preparedStatement.setDouble(4, obj.BD.y);
 
       ResultSet resultSet = preparedStatement.executeQuery();
       if (resultSet.first()) {
@@ -76,11 +80,13 @@ public class RectangleDAO extends DAO<Rectangle> {
     } catch (SQLException e) {
       e.printStackTrace();
     }
+    gestionBD.disconnect();
     return rectangle;
   }
 
   @Override
   public void delete(Rectangle obj) {
+    gestionBD.connect();
     try {
       PreparedStatement preparedStatement = gestionBD.conn.prepareStatement(
           "DELETE FROM RECTANGLE where nom = ? ");
@@ -90,10 +96,28 @@ public class RectangleDAO extends DAO<Rectangle> {
     } catch (SQLException e) {
       e.printStackTrace();
     }
+    gestionBD.disconnect();
   }
 
   @Override
   public void createTable() {
+    gestionBD.connect();
+    try {
+      PreparedStatement preparedStatement = gestionBD.conn.prepareStatement(
+          "CREATE TABLE IF NOT EXISTS RECTANGLE( " +
+              "nom varchar(100) NOT NULL," +
+              "xHG int(4) NOT NULL," +
+              "yHG int(4) NOT NULL," +
+              "xBD int(4) NOT NULL," +
+              "yBD int(4) NOT NULL," +
+              "PRIMARY KEY (nom));");
+      int set = preparedStatement.executeUpdate();
+      assert set == 1;
+      preparedStatement.close();
 
+    } catch (SQLException throwables) {
+      throwables.printStackTrace();
+    }
+    gestionBD.disconnect();
   }
 }

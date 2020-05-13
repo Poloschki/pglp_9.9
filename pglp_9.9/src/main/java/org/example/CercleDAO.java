@@ -98,9 +98,10 @@ public class CercleDAO extends DAO<Cercle> {
       int set = preparedStatement.executeUpdate();
       assert set == 1;
       preparedStatement.close();
-      gestionBD.disconnect();
+
     } catch (SQLException throwables) {
       throwables.printStackTrace();
     }
+    gestionBD.disconnect();
   }
 }

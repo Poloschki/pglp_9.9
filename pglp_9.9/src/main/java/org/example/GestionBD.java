@@ -46,7 +46,10 @@ public class GestionBD {
     this.connect();
     try {
       PreparedStatement preparedStatement = this.conn.prepareStatement(
-          "DROP Table IF EXISTS CERCLE");
+          "DROP Table IF EXISTS CERCLE;" +
+              "DROP TABLE IF EXISTS CARRE;" +
+              "DROP TABLE IF EXISTS TRIANGLE;" +
+              "DROP TABLE IF EXISTS RECTANGLE;");
       int resultSet = preparedStatement.executeUpdate();
       preparedStatement.close();
       assert resultSet == 1;
@@ -58,8 +61,14 @@ public class GestionBD {
 
   public void initConnection() {
     this.connect();
-    CercleDAO dao = new CercleDAO();
-    dao.createTable();
+    CercleDAO cercleDAO = new CercleDAO();
+    cercleDAO.createTable();
+    CarreDAO carreDAO = new CarreDAO();
+    carreDAO.createTable();
+    RectangleDAO rectangleDAO = new RectangleDAO();
+    rectangleDAO.createTable();
+    TriangleDAO triangleDAO = new TriangleDAO();
+    triangleDAO.createTable();
     this.disconnect();
   }
 

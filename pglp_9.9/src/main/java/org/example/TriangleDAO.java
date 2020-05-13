@@ -7,9 +7,10 @@ import java.sql.SQLException;
 public class TriangleDAO extends DAO<Triangle> {
   @Override
   public Triangle create(Triangle obj) {
+    gestionBD.connect();
     try {
       PreparedStatement preparedStatement = gestionBD.conn.prepareStatement(
-          "INSERT INTO TRIANGLE (nom,x1,y1,x2,y2,x3,y3) VALUES(?,?,?,?,?,?)");
+          "INSERT INTO TRIANGLE (nom,x1,y1,x2,y2,x3,y3) VALUES(?,?,?,?,?,?,?)");
       preparedStatement.setString(1, obj.nom);
       preparedStatement.setDouble(2, obj.p1.x);
       preparedStatement.setDouble(3, obj.p1.y);
@@ -23,11 +24,13 @@ public class TriangleDAO extends DAO<Triangle> {
     } catch (SQLException throwable) {
       throwable.printStackTrace();
     }
+    gestionBD.disconnect();
     return obj;
   }
 
   @Override
   public Triangle find(String id) {
+    gestionBD.connect();
     Triangle triangle = null;
     try {
       PreparedStatement preparedStatement = gestionBD.conn.prepareStatement(
@@ -48,22 +51,23 @@ public class TriangleDAO extends DAO<Triangle> {
     } catch (SQLException e) {
       e.printStackTrace();
     }
+    gestionBD.disconnect();
     return triangle;
   }
 
   @Override
   public Triangle update(Triangle obj) {
+    gestionBD.connect();
     Triangle triangle = null;
     try {
       PreparedStatement preparedStatement = gestionBD.conn.prepareStatement(
-          "UPDATE TRIANGLE set nom = ? and set x1 = ? and set y1 = ? and set x2 = ? and set y2 = ? and set x3 = ? and set y3 = ?  WHERE nom = ?");
-      preparedStatement.setString(1, obj.nom);
-      preparedStatement.setDouble(2, obj.p1.x);
-      preparedStatement.setDouble(3, obj.p1.y);
-      preparedStatement.setDouble(4, obj.p2.x);
-      preparedStatement.setDouble(5, obj.p2.y);
-      preparedStatement.setDouble(6, obj.p3.x);
-      preparedStatement.setDouble(7, obj.p3.y);
+          "UPDATE TRIANGLE set x1 = ? , y1 = ? , x2 = ? , y2 = ? , x3 = ? , y3 = ?  WHERE nom = ?");
+      preparedStatement.setDouble(1, obj.p1.x);
+      preparedStatement.setDouble(2, obj.p1.y);
+      preparedStatement.setDouble(3, obj.p2.x);
+      preparedStatement.setDouble(4, obj.p2.y);
+      preparedStatement.setDouble(5, obj.p3.x);
+      preparedStatement.setDouble(6, obj.p3.y);
       ResultSet resultSet = preparedStatement.executeQuery();
       if (resultSet.first()) {
         triangle = new Triangle(
@@ -80,11 +84,13 @@ public class TriangleDAO extends DAO<Triangle> {
     } catch (SQLException e) {
       e.printStackTrace();
     }
+    gestionBD.connect();
     return triangle;
   }
 
   @Override
   public void delete(Triangle obj) {
+    gestionBD.connect();
     try {
       PreparedStatement preparedStatement = gestionBD.conn.prepareStatement(
           "DELETE FROM TRIANGLE where nom = ? ");
@@ -94,10 +100,30 @@ public class TriangleDAO extends DAO<Triangle> {
     } catch (SQLException e) {
       e.printStackTrace();
     }
+    gestionBD.disconnect();
   }
 
   @Override
   public void createTable() {
+    gestionBD.connect();
+    try {
+      PreparedStatement preparedStatement = gestionBD.conn.prepareStatement(
+          "CREATE TABLE IF NOT EXISTS TRIANGLE( " +
+              "nom varchar(100) NOT NULL," +
+              "x1 int(4) NOT NULL," +
+              "y1 int(4) NOT NULL," +
+              "x2 int(4) NOT NULL," +
+              "y2 int(4) NOT NULL," +
+              "x3 int(4) NOT NULL," +
+              "y3 int(4) NOT NULL," +
+              "PRIMARY KEY (nom));");
+      int set = preparedStatement.executeUpdate();
+      assert set == 1;
+      preparedStatement.close();
 
+    } catch (SQLException throwables) {
+      throwables.printStackTrace();
+    }
+    gestionBD.disconnect();
   }
 }

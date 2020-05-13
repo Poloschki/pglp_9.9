@@ -11,6 +11,10 @@ public class CommandeAffectation implements Commande {
     this.interpreteur = interpreteur;
   }
 
+  public void printError() {
+    System.out.println("Le nom est déjà occupé");
+  }
+
   public void executeCercle() {
     try {
 
@@ -23,11 +27,12 @@ public class CommandeAffectation implements Commande {
       Cercle c2 = cDAO.find(this.name);
       if (c2 == null) {
         cDAO.create(c);
+        this.interpreteur.add(c);
       } else {
-        System.out.println("existe déjà");
+        printError();
       }
 
-      this.interpreteur.add(c);
+
     } catch (IllegalArgumentException e) {
       System.err.println(e);
     }
@@ -41,7 +46,17 @@ public class CommandeAffectation implements Commande {
       double y2 = Double.parseDouble(this.val[3]);
       double x3 = Double.parseDouble(this.val[4]);
       double y3 = Double.parseDouble(this.val[5]);
-      this.interpreteur.add(new Triangle(this.name, x1, y1, x2, y2, x3, y3));
+
+      Triangle t = new Triangle(this.name, x1, y1, x2, y2, x3, y3);
+      TriangleDAO dao = new TriangleDAO();
+      Triangle t2 = dao.find(this.name);
+      if (t2 == null) {
+        dao.create(t);
+        this.interpreteur.add(new Triangle(this.name, x1, y1, x2, y2, x3, y3));
+      } else {
+        printError();
+      }
+
 
     } catch (IllegalArgumentException e) {
       System.err.println(e);
@@ -53,7 +68,17 @@ public class CommandeAffectation implements Commande {
       double x = Double.parseDouble(this.val[0]);
       double y = Double.parseDouble(this.val[1]);
       double longueur = Double.parseDouble(this.val[2]);
-      this.interpreteur.add(new Carre(this.name, x, y, longueur));
+
+      Carre carre = new Carre(this.name, x, y, longueur);
+      CarreDAO carreDAO = new CarreDAO();
+      Carre c1 = carreDAO.find(this.name);
+      if (c1 == null) {
+        carreDAO.create(carre);
+        this.interpreteur.add(carre);
+      } else {
+        printError();
+      }
+
     } catch (IllegalArgumentException e) {
       System.err.println(e);
     }
@@ -65,7 +90,15 @@ public class CommandeAffectation implements Commande {
       double y1 = Double.parseDouble(this.val[1]);
       double x2 = Double.parseDouble(this.val[2]);
       double y2 = Double.parseDouble(this.val[3]);
-      this.interpreteur.add(new Rectangle(this.name, x1, y1, x2, y2));
+
+      Rectangle rect = new Rectangle(this.name, x1, y1, x2, y2);
+      RectangleDAO dao = new RectangleDAO();
+      Rectangle r1 = dao.find(this.name);
+      if (r1 == null) {
+        dao.create(rect);
+        this.interpreteur.add(rect);
+      } else printError();
+
     } catch (IllegalArgumentException e) {
       System.err.println(e);
     }
