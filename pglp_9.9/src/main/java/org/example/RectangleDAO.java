@@ -91,4 +91,9 @@ public class RectangleDAO extends DAO<Rectangle> {
       e.printStackTrace();
     }
   }
+
+  @Override
+  public void createTable() {
+
+  }
 }

@@ -84,4 +84,9 @@ public class CarreDAO extends DAO<Carre> {
     }
 
   }
+
+  @Override
+  public void createTable() {
+
+  }
 }

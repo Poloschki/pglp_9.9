@@ -20,8 +20,13 @@ public class CommandeAffectation implements Commande {
 
       Cercle c = new Cercle(this.name, x, y, rayon);
       CercleDAO cDAO = new CercleDAO();
-      cDAO.createTable();
-      cDAO.create(c);
+      Cercle c2 = cDAO.find(this.name);
+      if (c2 == null) {
+        cDAO.create(c);
+      } else {
+        System.out.println("existe déjà");
+      }
+
       this.interpreteur.add(c);
     } catch (IllegalArgumentException e) {
       System.err.println(e);

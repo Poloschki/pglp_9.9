@@ -95,4 +95,9 @@ public class TriangleDAO extends DAO<Triangle> {
       e.printStackTrace();
     }
   }
+
+  @Override
+  public void createTable() {
+
+  }
 }

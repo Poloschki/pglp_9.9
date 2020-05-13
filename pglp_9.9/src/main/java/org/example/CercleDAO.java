@@ -28,6 +28,7 @@ public class CercleDAO extends DAO<Cercle> {
   @Override
   public Cercle find(String id) {
     Cercle cercle = null;
+    gestionBD.connect();
     try {
       PreparedStatement preparedStatement = gestionBD.conn.prepareStatement(
           "SELECT * FROM CERCLE WHERE nom = ?");
@@ -43,36 +44,28 @@ public class CercleDAO extends DAO<Cercle> {
     } catch (SQLException e) {
       e.printStackTrace();
     }
+    gestionBD.disconnect();
     return cercle;
   }
 
   @Override
   public Cercle update(Cercle obj) {
-    Cercle cercle = null;
+    //  Cercle cercle = null;
     gestionBD.connect();
     try {
       PreparedStatement preparedStatement = gestionBD.conn.prepareStatement(
-          "UPDATE CERCLE set nom = ? and set x = ? and set y = ? and set rayon = ? WHERE nom = ?");
-      preparedStatement.setString(1, obj.nom);
-      preparedStatement.setDouble(2, obj.centre.x);
-      preparedStatement.setDouble(3, obj.centre.y);
-      preparedStatement.setDouble(4, obj.rayon);
-      preparedStatement.setString(5, obj.nom);
-      ResultSet resultSet = preparedStatement.executeQuery();
-      if (resultSet.first()) {
-        cercle = new Cercle(
-            resultSet.getString("nom"),
-            resultSet.getDouble("x"),
-            resultSet.getDouble("y"),
-            resultSet.getDouble("rayon")
-        );
-
-      }
+          "UPDATE CERCLE  SET x = ? , y = ? , rayon = ? WHERE nom = ?");
+      preparedStatement.setDouble(1, obj.centre.x);
+      preparedStatement.setDouble(2, obj.centre.y);
+      preparedStatement.setDouble(3, obj.rayon);
+      preparedStatement.setString(4, obj.nom);
+      int result = preparedStatement.executeUpdate();
+      assert result == 1;
     } catch (SQLException e) {
       e.printStackTrace();
     }
     gestionBD.disconnect();
-    return cercle;
+    return obj;
   }
 
   @Override
@@ -91,6 +84,7 @@ public class CercleDAO extends DAO<Cercle> {
     gestionBD.disconnect();
   }
 
+  @Override
   public void createTable() {
     gestionBD.connect();
     try {

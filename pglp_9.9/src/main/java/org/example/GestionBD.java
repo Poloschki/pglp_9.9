@@ -1,9 +1,6 @@
 package org.example;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 
 public class GestionBD {
   // JDBC driver name and database URL
@@ -43,6 +40,27 @@ public class GestionBD {
     } catch (SQLException se) {
       se.printStackTrace();
     }
+  }
+
+  public void endConnection() {
+    this.connect();
+    try {
+      PreparedStatement preparedStatement = this.conn.prepareStatement(
+          "DROP Table IF EXISTS CERCLE");
+      int resultSet = preparedStatement.executeUpdate();
+      preparedStatement.close();
+      assert resultSet == 1;
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+    this.disconnect();
+  }
+
+  public void initConnection() {
+    this.connect();
+    CercleDAO dao = new CercleDAO();
+    dao.createTable();
+    this.disconnect();
   }
 
 }
