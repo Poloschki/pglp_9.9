@@ -2,7 +2,6 @@ package org.example;
 
 public class CommandeExit extends Commande {
 
-
   @Override
   public void execute() {
     GestionBD gestionBD = new GestionBD();

@@ -1,10 +1,6 @@
 package org.example;
 
 public class CommandeAdd extends Commande {
-  Interpreteur interpreteur;
-  String toExecute;
-  String name;
-  String[] val;
 
   public CommandeAdd(Interpreteur interpreteur) {
     this.interpreteur = interpreteur;
@@ -15,16 +11,17 @@ public class CommandeAdd extends Commande {
     try {
       Composite composite = interpreteur.getComposite(this.name);
       if (composite == null) {
+        //on crée le compositeForme si il n'existe pas
         this.interpreteur.add(new CompositeForme(this.name));
         composite = interpreteur.getComposite(this.name);
         if (composite instanceof CompositeForme) {
-          ((CompositeForme) composite).add(this.interpreteur.getComposite(this.val[1]));
+          ((CompositeForme) composite).add(this.interpreteur.getComposite(this.readValues[1]));
           composite.print();
         }
       } else {
         composite = interpreteur.getComposite(this.name);
         if (composite instanceof CompositeForme) {
-          ((CompositeForme) composite).add(this.interpreteur.getComposite(this.val[1]));
+          ((CompositeForme) composite).add(this.interpreteur.getComposite(this.readValues[1]));
           composite.print();
         }
 
@@ -40,11 +37,12 @@ public class CommandeAdd extends Commande {
 
   @Override
   public void cutting() {
-    this.toExecute = this.toExecute.replaceAll("add", "");
-    this.toExecute = this.toExecute.replaceAll("\\(", "");
-    this.toExecute = this.toExecute.replaceAll("\\)", "");
-    this.val = this.toExecute.split(",");
-    this.name = this.val[0];
+    this.readValues = this.toExecute.replaceAll("add", "")
+        .replaceAll("\\(", "")
+        .replaceAll("\\)", "")
+        .replaceAll(" ", "")
+        .split(",");
+    this.name = this.readValues[0];
   }
 
   @Override

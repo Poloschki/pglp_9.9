@@ -1,25 +1,22 @@
 package org.example;
 
+import java.util.ArrayList;
+
 public class CommandeAffectation extends Commande {
-  Interpreteur interpreteur;
-  String toExecute;
-  String name;
-  String type;
-  String[] val;
+  private final Interpreteur interpreteur;
+  private String toExecute;
+  private String name;
+  private String type;
+  private ArrayList<Double> value = new ArrayList<>();
 
   public CommandeAffectation(Interpreteur interpreteur) {
     this.interpreteur = interpreteur;
   }
 
-
   public void executeCercle() {
     try {
 
-      double x = Double.parseDouble(this.val[0]);
-      double y = Double.parseDouble(this.val[1]);
-      double rayon = Double.parseDouble(this.val[2]);
-
-      Cercle c = new Cercle(this.name, x, y, rayon);
+      Cercle c = new Cercle(this.name, value.get(0), value.get(1), value.get(2));
       CercleDAO cDAO = new CercleDAO();
       Cercle c2 = cDAO.find(this.name);
       if (c2 == null) {
@@ -32,24 +29,19 @@ public class CommandeAffectation extends Commande {
       printErrorArgument();
     } catch (NumberFormatException n) {
       printErrorNumber(n);
+    } catch (IndexOutOfBoundsException i) {
+      printErrorNullPointer();
     }
   }
 
   public void executeTriangle() {
     try {
-      double x1 = Double.parseDouble(this.val[0]);
-      double y1 = Double.parseDouble(this.val[1]);
-      double x2 = Double.parseDouble(this.val[2]);
-      double y2 = Double.parseDouble(this.val[3]);
-      double x3 = Double.parseDouble(this.val[4]);
-      double y3 = Double.parseDouble(this.val[5]);
-
-      Triangle t = new Triangle(this.name, x1, y1, x2, y2, x3, y3);
+      Triangle t = new Triangle(this.name, value.get(0), value.get(1), value.get(2), value.get(3), value.get(4), value.get(5));
       TriangleDAO dao = new TriangleDAO();
       Triangle t2 = dao.find(this.name);
       if (t2 == null) {
         dao.create(t);
-        this.interpreteur.add(new Triangle(this.name, x1, y1, x2, y2, x3, y3));
+        this.interpreteur.add(t);
       } else {
         printErrorNameTaken();
       }
@@ -64,11 +56,7 @@ public class CommandeAffectation extends Commande {
 
   public void executeCarre() {
     try {
-      double x = Double.parseDouble(this.val[0]);
-      double y = Double.parseDouble(this.val[1]);
-      double longueur = Double.parseDouble(this.val[2]);
-
-      Carre carre = new Carre(this.name, x, y, longueur);
+      Carre carre = new Carre(this.name, value.get(0), value.get(1), value.get(2));
       CarreDAO carreDAO = new CarreDAO();
       Carre c1 = carreDAO.find(this.name);
       if (c1 == null) {
@@ -87,12 +75,7 @@ public class CommandeAffectation extends Commande {
 
   public void excuteRectangle() {
     try {
-      double x1 = Double.parseDouble(this.val[0]);
-      double y1 = Double.parseDouble(this.val[1]);
-      double x2 = Double.parseDouble(this.val[2]);
-      double y2 = Double.parseDouble(this.val[3]);
-
-      Rectangle rect = new Rectangle(this.name, x1, y1, x2, y2);
+      Rectangle rect = new Rectangle(this.name, value.get(0), value.get(1), value.get(2), value.get(3));
       RectangleDAO dao = new RectangleDAO();
       Rectangle r1 = dao.find(this.name);
       if (r1 == null) {
@@ -109,6 +92,7 @@ public class CommandeAffectation extends Commande {
 
   @Override
   public void execute() {
+    value = parseStringtoDouble(readValues);
     switch (this.type) {
       case "cercle":
         executeCercle();
@@ -134,18 +118,18 @@ public class CommandeAffectation extends Commande {
 
   @Override
   public void cutting() {
-    int pos1, pos2;
-    pos1 = this.toExecute.indexOf("=");
-    this.name = this.toExecute.substring(0, pos1);
-    this.name = this.name.replaceAll(" ", "");
-    pos2 = this.toExecute.indexOf("(");
-    this.type = this.toExecute.substring(pos1 + 1, pos2);
-    this.type = this.type.replaceAll(" ", "");
-    this.type = this.type.toLowerCase();
-    this.toExecute = this.toExecute.substring(pos2 + 1);
-    this.toExecute = this.toExecute.replaceAll("\\(", "");
-    this.toExecute = this.toExecute.replaceAll("\\)", "");
-    this.val = this.toExecute.split(",");
+    this.name = this.toExecute.substring(0, this.toExecute.indexOf("=")).replaceAll(" ", "");
+
+    this.type = this.toExecute.substring(this.toExecute.indexOf("=") + 1, this.toExecute.indexOf("("))
+        .replaceAll(" ", "")
+        .toLowerCase();
+
+    this.readValues = this.toExecute.substring(this.toExecute.indexOf("(") + 1)
+        .replaceAll("\\(", "")
+        .replaceAll("\\)", "")
+        .replaceAll(" ", "")
+        .split(",");
+
   }
 
   @Override

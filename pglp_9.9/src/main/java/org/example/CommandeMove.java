@@ -1,11 +1,9 @@
 package org.example;
 
-public class CommandeMove extends Commande {
+import java.util.ArrayList;
+import java.util.Arrays;
 
-  Interpreteur interpreteur;
-  String toExecute;
-  String name;
-  String[] val;
+public class CommandeMove extends Commande {
 
   public CommandeMove(Interpreteur interpreteur) {
 
@@ -13,34 +11,22 @@ public class CommandeMove extends Commande {
 
   }
 
-  public void printErrorArgument() {
-    System.err.println("Pas assez d'argument");
-  }
-
-  public void printErrorNumber(NumberFormatException n) {
-    System.err.println("Entrée non correct " + n);
-  }
-
-  public void printErrorNullPointer() {
-    System.err.println("l'objet à déplacer n'existe pas");
-  }
-
   @Override
   public void execute() {
     try {
-      double x = Double.parseDouble(this.val[1]);
-      double y = Double.parseDouble(this.val[2]);
+      ArrayList<Double> value = parseStringtoDouble(Arrays.copyOfRange(readValues, 1, 3));
       Composite composite = interpreteur.getComposite(this.name);
 
-      composite.move(x, y);
+      composite.move(value.get(0), value.get(1));
       composite.print();
 
     } catch (ArrayIndexOutOfBoundsException e) {
       printErrorArgument();
     } catch (NumberFormatException n) {
       printErrorNumber(n);
-    } catch (NullPointerException e) {
+    } catch (NullPointerException | IndexOutOfBoundsException e) {
       printErrorNullPointer();
+
     }
   }
 
@@ -51,11 +37,12 @@ public class CommandeMove extends Commande {
 
   @Override
   public void cutting() {
-    this.toExecute = this.toExecute.replaceAll("move", "");
-    this.toExecute = this.toExecute.replaceAll("\\(", "");
-    this.toExecute = this.toExecute.replaceAll("\\)", "");
-    this.val = this.toExecute.split(",");
-    this.name = this.val[0];
+    this.readValues = this.toExecute.replaceAll("move", "")
+        .replaceAll("\\(", "")
+        .replaceAll("\\)", "")
+        .replaceAll(" ", "")
+        .split(",");
+    this.name = this.readValues[0];
   }
 
 }

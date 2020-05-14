@@ -1,6 +1,12 @@
 package org.example;
 
+import java.util.ArrayList;
+
 public abstract class Commande {
+  protected String[] readValues;
+  protected Interpreteur interpreteur;
+  protected String toExecute;
+  protected String name;
 
   public void printErrorNameTaken() {
     System.err.println("Le nom est déjà occupé");
@@ -20,6 +26,20 @@ public abstract class Commande {
 
   public void printErrorForme() {
     System.err.println("Forme non reconnus ou problèmes dans sa création");
+  }
+
+  public ArrayList<Double> parseStringtoDouble(String[] list) {
+    ArrayList<Double> afterParse = new ArrayList<>();
+    for (String s : list) {
+      try {
+        afterParse.add(Double.parseDouble(s));
+      } catch (ArrayIndexOutOfBoundsException e) {
+        printErrorArgument();
+      } catch (NumberFormatException n) {
+        printErrorNumber(n);
+      }
+    }
+    return afterParse;
   }
 
   public abstract void execute();
