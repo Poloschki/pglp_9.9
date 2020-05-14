@@ -49,7 +49,8 @@ public class GestionBD {
           "DROP Table IF EXISTS CERCLE;" +
               "DROP TABLE IF EXISTS CARRE;" +
               "DROP TABLE IF EXISTS TRIANGLE;" +
-              "DROP TABLE IF EXISTS RECTANGLE;");
+              "DROP TABLE IF EXISTS RECTANGLE;" +
+              "DROP TABLE IF EXISTS GROUPE");
       int resultSet = preparedStatement.executeUpdate();
       preparedStatement.close();
       assert resultSet == 1;
@@ -69,6 +70,8 @@ public class GestionBD {
     rectangleDAO.createTable();
     TriangleDAO triangleDAO = new TriangleDAO();
     triangleDAO.createTable();
+    CompositeFormeDAO compositeFormeDAO = new CompositeFormeDAO();
+    compositeFormeDAO.createTable();
     this.disconnect();
   }
 

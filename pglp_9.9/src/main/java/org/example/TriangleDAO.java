@@ -68,19 +68,9 @@ public class TriangleDAO extends DAO<Triangle> {
       preparedStatement.setDouble(4, obj.p2.y);
       preparedStatement.setDouble(5, obj.p3.x);
       preparedStatement.setDouble(6, obj.p3.y);
-      ResultSet resultSet = preparedStatement.executeQuery();
-      if (resultSet.first()) {
-        triangle = new Triangle(
-            resultSet.getString("nom"),
-            resultSet.getDouble("x1"),
-            resultSet.getDouble("y1"),
-            resultSet.getDouble("x2"),
-            resultSet.getDouble("y2"),
-            resultSet.getDouble("x3"),
-            resultSet.getDouble("y3")
-        );
-
-      }
+      preparedStatement.setString(7, obj.nom);
+      int result = preparedStatement.executeUpdate();
+      assert result == 1;
     } catch (SQLException e) {
       e.printStackTrace();
     }

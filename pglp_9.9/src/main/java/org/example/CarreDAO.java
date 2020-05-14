@@ -60,17 +60,8 @@ public class CarreDAO extends DAO<Carre> {
       preparedStatement.setDouble(2, obj.p1.y);
       preparedStatement.setDouble(3, obj.longueur);
       preparedStatement.setString(4, obj.nom);
-      ResultSet resultSet = preparedStatement.executeQuery();
-      preparedStatement.close();
-      if (resultSet.first()) {
-        carre = new Carre(
-            resultSet.getString("nom"),
-            resultSet.getDouble("x"),
-            resultSet.getDouble("y"),
-            resultSet.getDouble("longueur")
-        );
-
-      }
+      int result = preparedStatement.executeUpdate();
+      assert result == 1;
     } catch (SQLException e) {
       e.printStackTrace();
     }

@@ -15,6 +15,8 @@ public class Carre implements Forme {
   @Override
   public void move(double x, double y) {
     this.p1.transpose(x, y);
+    CarreDAO cDAO = new CarreDAO();
+    cDAO.update(this);
   }
 
   @Override

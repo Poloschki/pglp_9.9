@@ -16,7 +16,8 @@ public class Triangle implements Forme {
     this.p1.transpose(x, y);
     this.p2.transpose(x, y);
     this.p3.transpose(x, y);
-
+    TriangleDAO tDAO = new TriangleDAO();
+    tDAO.update(this);
 
   }
 

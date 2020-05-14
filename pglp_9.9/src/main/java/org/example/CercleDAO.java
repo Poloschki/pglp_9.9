@@ -50,7 +50,6 @@ public class CercleDAO extends DAO<Cercle> {
 
   @Override
   public Cercle update(Cercle obj) {
-    //  Cercle cercle = null;
     gestionBD.connect();
     try {
       PreparedStatement preparedStatement = gestionBD.conn.prepareStatement(

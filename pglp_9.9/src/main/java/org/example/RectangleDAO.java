@@ -66,17 +66,10 @@ public class RectangleDAO extends DAO<Rectangle> {
       preparedStatement.setDouble(2, obj.HG.y);
       preparedStatement.setDouble(3, obj.BD.x);
       preparedStatement.setDouble(4, obj.BD.y);
+      preparedStatement.setString(5, obj.nom);
 
-      ResultSet resultSet = preparedStatement.executeQuery();
-      if (resultSet.first()) {
-        rectangle = new Rectangle(
-            resultSet.getString("nom"),
-            resultSet.getDouble("xHG"),
-            resultSet.getDouble("yHG"),
-            resultSet.getDouble("xBD"),
-            resultSet.getDouble("yBD"));
-
-      }
+      int result = preparedStatement.executeUpdate();
+      assert result == 1;
     } catch (SQLException e) {
       e.printStackTrace();
     }

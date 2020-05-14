@@ -18,14 +18,12 @@ public class CommandeAdd implements Commande {
         this.interpreteur.add(new CompositeForme(this.name));
         composite = interpreteur.getComposite(this.name);
         if (composite instanceof CompositeForme) {
-          //composite = this.interpreteur.getComposite(this.name);
           ((CompositeForme) composite).add(this.interpreteur.getComposite(this.val[1]));
           composite.print();
         }
       } else {
         composite = interpreteur.getComposite(this.name);
         if (composite instanceof CompositeForme) {
-          //composite = this.interpreteur.getComposite(this.name);
           ((CompositeForme) composite).add(this.interpreteur.getComposite(this.val[1]));
           composite.print();
         }
@@ -45,7 +43,6 @@ public class CommandeAdd implements Commande {
     this.name = this.val[0];
   }
 
-  //add(g1,c1)
   @Override
   public void setToExecute(String input) {
     this.toExecute = input;

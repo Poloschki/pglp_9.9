@@ -34,6 +34,8 @@ public class CompositeForme implements Composite {
 
   public void add(Composite forme) {
     this.groupe.add(forme);
+    CompositeFormeDAO cfd = new CompositeFormeDAO();
+    cfd.create(this);
   }
 
   public void remove(String nom) {
