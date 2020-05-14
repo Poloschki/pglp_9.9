@@ -1,6 +1,6 @@
 package org.example;
 
-public class CommandeAdd implements Commande {
+public class CommandeAdd extends Commande {
   Interpreteur interpreteur;
   String toExecute;
   String name;
@@ -29,8 +29,12 @@ public class CommandeAdd implements Commande {
         }
 
       }
-    } catch (IllegalArgumentException e) {
-      e.printStackTrace();
+    } catch (ArrayIndexOutOfBoundsException e) {
+      printErrorArgument();
+    } catch (NumberFormatException n) {
+      printErrorNumber(n);
+    } catch (NullPointerException n) {
+      printErrorNullPointer();
     }
   }
 

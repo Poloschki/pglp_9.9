@@ -1,6 +1,6 @@
 package org.example;
 
-public class CommandeMove implements Commande {
+public class CommandeMove extends Commande {
 
   Interpreteur interpreteur;
   String toExecute;
@@ -13,6 +13,18 @@ public class CommandeMove implements Commande {
 
   }
 
+  public void printErrorArgument() {
+    System.err.println("Pas assez d'argument");
+  }
+
+  public void printErrorNumber(NumberFormatException n) {
+    System.err.println("Entrée non correct " + n);
+  }
+
+  public void printErrorNullPointer() {
+    System.err.println("l'objet à déplacer n'existe pas");
+  }
+
   @Override
   public void execute() {
     try {
@@ -23,8 +35,12 @@ public class CommandeMove implements Commande {
       composite.move(x, y);
       composite.print();
 
-    } catch (IllegalArgumentException e) {
-      e.printStackTrace();
+    } catch (ArrayIndexOutOfBoundsException e) {
+      printErrorArgument();
+    } catch (NumberFormatException n) {
+      printErrorNumber(n);
+    } catch (NullPointerException e) {
+      printErrorNullPointer();
     }
   }
 

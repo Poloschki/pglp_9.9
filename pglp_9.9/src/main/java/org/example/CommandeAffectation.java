@@ -1,6 +1,6 @@
 package org.example;
 
-public class CommandeAffectation implements Commande {
+public class CommandeAffectation extends Commande {
   Interpreteur interpreteur;
   String toExecute;
   String name;
@@ -11,9 +11,6 @@ public class CommandeAffectation implements Commande {
     this.interpreteur = interpreteur;
   }
 
-  public void printError() {
-    System.out.println("Le nom est déjà occupé");
-  }
 
   public void executeCercle() {
     try {
@@ -29,12 +26,12 @@ public class CommandeAffectation implements Commande {
         cDAO.create(c);
         this.interpreteur.add(c);
       } else {
-        printError();
+        printErrorNameTaken();
       }
-
-
-    } catch (IllegalArgumentException e) {
-      System.err.println(e);
+    } catch (ArrayIndexOutOfBoundsException e) {
+      printErrorArgument();
+    } catch (NumberFormatException n) {
+      printErrorNumber(n);
     }
   }
 
@@ -54,12 +51,14 @@ public class CommandeAffectation implements Commande {
         dao.create(t);
         this.interpreteur.add(new Triangle(this.name, x1, y1, x2, y2, x3, y3));
       } else {
-        printError();
+        printErrorNameTaken();
       }
 
 
-    } catch (IllegalArgumentException e) {
-      System.err.println(e);
+    } catch (ArrayIndexOutOfBoundsException e) {
+      printErrorArgument();
+    } catch (NumberFormatException n) {
+      printErrorNumber(n);
     }
   }
 
@@ -76,11 +75,13 @@ public class CommandeAffectation implements Commande {
         carreDAO.create(carre);
         this.interpreteur.add(carre);
       } else {
-        printError();
+        printErrorNameTaken();
       }
 
-    } catch (IllegalArgumentException e) {
-      System.err.println(e);
+    } catch (ArrayIndexOutOfBoundsException e) {
+      printErrorArgument();
+    } catch (NumberFormatException n) {
+      printErrorNumber(n);
     }
   }
 
@@ -97,10 +98,12 @@ public class CommandeAffectation implements Commande {
       if (r1 == null) {
         dao.create(rect);
         this.interpreteur.add(rect);
-      } else printError();
+      } else printErrorNameTaken();
 
-    } catch (IllegalArgumentException e) {
-      System.err.println(e);
+    } catch (ArrayIndexOutOfBoundsException e) {
+      printErrorArgument();
+    } catch (NumberFormatException n) {
+      printErrorNumber(n);
     }
   }
 
@@ -121,9 +124,12 @@ public class CommandeAffectation implements Commande {
         excuteRectangle();
         break;
       default:
-        System.err.println("Forme non reconnus");
     }
-    System.out.println(this.interpreteur.compositeArrayList.get(this.interpreteur.compositeArrayList.size() - 1));
+    try {
+      System.out.println(this.interpreteur.compositeArrayList.get(this.interpreteur.compositeArrayList.size() - 1));
+    } catch (ArrayIndexOutOfBoundsException e) {
+      printErrorForme();
+    }
   }
 
   @Override

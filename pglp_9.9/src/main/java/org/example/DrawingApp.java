@@ -18,7 +18,12 @@ public class DrawingApp {
     Scanner input = new Scanner(System.in);
     while (true) {
       commande = tui.nexCommand(input.nextLine());
-      commande.execute();
+      try {
+        commande.execute();
+      } catch (NullPointerException n) {
+        System.err.println("Problème avec l'entrée");
+      }
+
     }
 
   }

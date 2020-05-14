@@ -1,6 +1,6 @@
 package org.example;
 
-public class CommandeExit implements Commande {
+public class CommandeExit extends Commande {
 
 
   @Override
