@@ -1,6 +1,6 @@
 package org.example;
 
-public class CommandeExit extends Commande {
+public class CommandeExit implements CommandeExecute {
 
   @Override
   public void execute() {
@@ -9,13 +9,4 @@ public class CommandeExit extends Commande {
     System.exit(0);
   }
 
-  @Override
-  public void cutting() {
-
-  }
-
-  @Override
-  public void setToExecute(String input) {
-
-  }
 }

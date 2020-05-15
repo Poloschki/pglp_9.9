@@ -12,7 +12,7 @@ public class DrawingApp {
 
   public void run() {
     DrawingTUI tui = new DrawingTUI();
-    Commande commande;
+    CommandeExecute commande;
     tui.initalisation();
     instruction();
     Scanner input = new Scanner(System.in);
@@ -46,11 +46,8 @@ public class DrawingApp {
         "Pour les déplacements : " +
         "move(obj,(x,y))" +
         "\n" +
+        "Pour afficher les éléments créer : print" +
+        "\n" +
         "Pour quitter : exit ");
   }
 }
-
-/**
- * TODO
- * une commande print qui affiche tous les éléments se trouvant dans la liste de interpréteur
- */

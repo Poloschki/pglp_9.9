@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 public class CommandeAffectation extends Commande {
   private final Interpreteur interpreteur;
-  private String toExecute;
   private String name;
   private String type;
   private ArrayList<Double> value = new ArrayList<>();
@@ -118,13 +117,15 @@ public class CommandeAffectation extends Commande {
 
   @Override
   public void cutting() {
-    this.name = this.toExecute.substring(0, this.toExecute.indexOf("=")).replaceAll(" ", "");
+    System.out.println(super.toExecute);
+    this.name = super.toExecute.substring(0, super.toExecute.indexOf("="))
+        .replaceAll(" ", "");
 
-    this.type = this.toExecute.substring(this.toExecute.indexOf("=") + 1, this.toExecute.indexOf("("))
+    this.type = super.toExecute.substring(super.toExecute.indexOf("=") + 1, super.toExecute.indexOf("("))
         .replaceAll(" ", "")
         .toLowerCase();
 
-    this.readValues = this.toExecute.substring(this.toExecute.indexOf("(") + 1)
+    this.readValues = super.toExecute.substring(super.toExecute.indexOf("(") + 1)
         .replaceAll("\\(", "")
         .replaceAll("\\)", "")
         .replaceAll(" ", "")
@@ -132,8 +133,4 @@ public class CommandeAffectation extends Commande {
 
   }
 
-  @Override
-  public void setToExecute(String input) {
-    this.toExecute = input;
-  }
 }

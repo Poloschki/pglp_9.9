@@ -16,16 +16,21 @@ public class CommandeAdd extends Commande {
         composite = interpreteur.getComposite(this.name);
         if (composite instanceof CompositeForme) {
           ((CompositeForme) composite).add(this.interpreteur.getComposite(this.readValues[1]));
+          CompositeFormeDAO cfDAO = new CompositeFormeDAO();
+          cfDAO.create((CompositeForme) composite);
           composite.print();
         }
       } else {
         composite = interpreteur.getComposite(this.name);
         if (composite instanceof CompositeForme) {
           ((CompositeForme) composite).add(this.interpreteur.getComposite(this.readValues[1]));
+          CompositeFormeDAO cfDAO = new CompositeFormeDAO();
+          cfDAO.create((CompositeForme) composite);
           composite.print();
         }
 
       }
+
     } catch (ArrayIndexOutOfBoundsException e) {
       printErrorArgument();
     } catch (NumberFormatException n) {
@@ -37,7 +42,7 @@ public class CommandeAdd extends Commande {
 
   @Override
   public void cutting() {
-    this.readValues = this.toExecute.replaceAll("add", "")
+    this.readValues = super.toExecute.replaceAll("add", "")
         .replaceAll("\\(", "")
         .replaceAll("\\)", "")
         .replaceAll(" ", "")
@@ -45,8 +50,4 @@ public class CommandeAdd extends Commande {
     this.name = this.readValues[0];
   }
 
-  @Override
-  public void setToExecute(String input) {
-    this.toExecute = input;
-  }
 }

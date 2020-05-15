@@ -3,7 +3,7 @@ import java.util.HashMap;
 
 
 public class DrawingTUI {
-  public HashMap<String, Commande> createdCommand;
+  public HashMap<String, CommandeExecute> createdCommand;
   public Interpreteur interpreteur;
 
   public DrawingTUI() {
@@ -22,12 +22,15 @@ public class DrawingTUI {
 
   }
 
-  public Commande nexCommand(String input) {
+  public CommandeExecute nexCommand(String input) {
     for (String testKey : this.createdCommand.keySet()) {
       if (input.contains(testKey)) {
-        Commande commande = this.createdCommand.get(testKey);
-        commande.setToExecute(input);
-        commande.cutting();
+        CommandeExecute commande = this.createdCommand.get(testKey);
+        if (commande instanceof Commande) {
+          ((Commande) commande).setToExecute(input);
+          ((Commande) commande).cutting();
+
+        }
         return commande;
 
       }

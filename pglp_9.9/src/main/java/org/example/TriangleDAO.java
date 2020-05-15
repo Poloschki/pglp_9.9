@@ -98,15 +98,15 @@ public class TriangleDAO extends DAO<Triangle> {
     gestionBD.connect();
     try {
       PreparedStatement preparedStatement = gestionBD.conn.prepareStatement(
-          "CREATE TABLE IF NOT EXISTS TRIANGLE( " +
-              "nom varchar(100) NOT NULL," +
-              "x1 int(4) NOT NULL," +
-              "y1 int(4) NOT NULL," +
-              "x2 int(4) NOT NULL," +
-              "y2 int(4) NOT NULL," +
-              "x3 int(4) NOT NULL," +
-              "y3 int(4) NOT NULL," +
-              "PRIMARY KEY (nom));");
+          "CREATE TABLE IF NOT EXISTS TRIANGLE( "
+              + "nom varchar(100) NOT NULL,"
+              + "x1 int(4) NOT NULL,"
+              + "y1 int(4) NOT NULL,"
+              + "x2 int(4) NOT NULL,"
+              + "y2 int(4) NOT NULL,"
+              + "x3 int(4) NOT NULL,"
+              + "y3 int(4) NOT NULL,"
+              + "PRIMARY KEY (nom));");
       int set = preparedStatement.executeUpdate();
       assert set == 1;
       preparedStatement.close();

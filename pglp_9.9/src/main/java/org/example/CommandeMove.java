@@ -31,11 +31,6 @@ public class CommandeMove extends Commande {
   }
 
   @Override
-  public void setToExecute(String input) {
-    this.toExecute = input;
-  }
-
-  @Override
   public void cutting() {
     this.readValues = this.toExecute.replaceAll("move", "")
         .replaceAll("\\(", "")

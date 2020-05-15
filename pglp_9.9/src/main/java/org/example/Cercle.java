@@ -1,9 +1,9 @@
 package org.example;
 
 public class Cercle implements Forme {
-  String nom;
-  Point centre;
-  double rayon;
+  public final String nom;
+  public final Point centre;
+  public final double rayon;
 
   public Cercle(String nom, double x, double y, double rayon) {
     this.nom = nom;

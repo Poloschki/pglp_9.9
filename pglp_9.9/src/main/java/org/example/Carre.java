@@ -1,9 +1,9 @@
 package org.example;
 
 public class Carre implements Forme {
-  String nom;
-  Point p1;
-  double longueur;
+  public final String nom;
+  public final Point p1;
+  public final double longueur;
 
   public Carre(String nom, double x, double y, double longueur) {
     this.nom = nom;

@@ -15,9 +15,7 @@ public class CommandeAffectationTest {
 
   @Test
   public void executeCercle() {
-    ca.setToExecute("c = cercle((3,3),3)");
-    ca.cutting();
-    ca.executeCercle();
+
   }
 
 

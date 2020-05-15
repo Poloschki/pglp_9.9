@@ -1,6 +1,8 @@
 package org.example;
 
-public class CommandePrint extends Commande {
+public class CommandePrint implements CommandeExecute {
+
+  Interpreteur interpreteur;
 
   public CommandePrint(Interpreteur interpreteur) {
     this.interpreteur = interpreteur;
@@ -13,13 +15,4 @@ public class CommandePrint extends Commande {
     }
   }
 
-  @Override
-  public void cutting() {
-
-  }
-
-  @Override
-  public void setToExecute(String input) {
-    this.toExecute = input;
-  }
 }
