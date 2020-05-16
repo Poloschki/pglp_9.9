@@ -14,8 +14,6 @@ public class Rectangle implements Forme {
   public void move(double x, double y) {
     this.HG.transpose(x, y);
     this.BD.transpose(x, y);
-    RectangleDAO rDAO = new RectangleDAO();
-    rDAO.update(this);
   }
 
   @Override

@@ -11,6 +11,24 @@ public class CommandeMove extends Commande {
 
   }
 
+  private void updateDAO(Composite composite) {
+    if (composite instanceof Carre) {
+      DAO<Carre> carre = DAOFactory.getCarreDAO();
+      carre.update((Carre) composite);
+    } else if (composite instanceof Cercle) {
+      DAO<Cercle> cercle = DAOFactory.getCercleDAO();
+      cercle.update((Cercle) composite);
+    } else if (composite instanceof CompositeForme) {
+      DAO<CompositeForme> forme = DAOFactory.getCompositeFormeDAO();
+      forme.update((CompositeForme) composite);
+    } else if (composite instanceof Rectangle) {
+      DAO<Rectangle> rect = DAOFactory.getRectangleDAO();
+      rect.update((Rectangle) composite);
+    } else if (composite instanceof Triangle) {
+      DAO<Triangle> tri = DAOFactory.getTriangleDAO();
+      tri.update((Triangle) composite);
+    }
+  }
 
   @Override
   public void execute() {
@@ -20,6 +38,7 @@ public class CommandeMove extends Commande {
 
       composite.move(value.get(0), value.get(1));
       composite.print();
+      updateDAO(composite);
 
     } catch (ArrayIndexOutOfBoundsException e) {
       printErrorArgument();
