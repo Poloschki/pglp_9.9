@@ -3,13 +3,12 @@ package org.example;
 import java.util.ArrayList;
 
 public class CommandeAffectation extends Commande {
-  private final Interpreteur interpreteur;
   private String name;
   private String type;
   private ArrayList<Double> value = new ArrayList<>();
 
   public CommandeAffectation(Interpreteur interpreteur) {
-    this.interpreteur = interpreteur;
+    super.interpreteur = interpreteur;
   }
 
   public void executeCercle() {
@@ -20,7 +19,7 @@ public class CommandeAffectation extends Commande {
       Cercle c2 = cDAO.find(this.name);
       if (c2 == null) {
         cDAO.create(c);
-        this.interpreteur.add(c);
+        super.interpreteur.add(c);
       } else {
         printErrorNameTaken();
       }
@@ -40,7 +39,7 @@ public class CommandeAffectation extends Commande {
       Triangle t2 = dao.find(this.name);
       if (t2 == null) {
         dao.create(t);
-        this.interpreteur.add(t);
+        super.interpreteur.add(t);
       } else {
         printErrorNameTaken();
       }
@@ -60,7 +59,7 @@ public class CommandeAffectation extends Commande {
       Carre c1 = carreDAO.find(this.name);
       if (c1 == null) {
         carreDAO.create(carre);
-        this.interpreteur.add(carre);
+        super.interpreteur.add(carre);
       } else {
         printErrorNameTaken();
       }
@@ -79,7 +78,7 @@ public class CommandeAffectation extends Commande {
       Rectangle r1 = dao.find(this.name);
       if (r1 == null) {
         dao.create(rect);
-        this.interpreteur.add(rect);
+        super.interpreteur.add(rect);
       } else printErrorNameTaken();
 
     } catch (ArrayIndexOutOfBoundsException e) {
@@ -109,7 +108,7 @@ public class CommandeAffectation extends Commande {
       default:
     }
     try {
-      System.out.println(this.interpreteur.compositeArrayList.get(this.interpreteur.compositeArrayList.size() - 1));
+      System.out.println(super.interpreteur.compositeArrayList.get(super.interpreteur.compositeArrayList.size() - 1));
     } catch (ArrayIndexOutOfBoundsException e) {
       printErrorForme();
     }

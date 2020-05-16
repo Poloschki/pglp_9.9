@@ -14,6 +14,8 @@ public class DrawingApp {
     DrawingTUI tui = new DrawingTUI();
     CommandeExecute commande;
     tui.initalisation();
+    //  CommandeLoad load = new CommandeLoad();
+    // load.execute();
     instruction();
     Scanner input = new Scanner(System.in);
     while (true) {

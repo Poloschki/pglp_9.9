@@ -4,8 +4,8 @@ public class CommandeExit implements CommandeExecute {
 
   @Override
   public void execute() {
-    GestionBD gestionBD = new GestionBD();
-    gestionBD.endConnection();
+    GestionBD bd = new GestionBD();
+    bd.endConnection();
     System.exit(0);
   }
 

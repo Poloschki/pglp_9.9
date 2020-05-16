@@ -3,27 +3,27 @@ package org.example;
 public class CommandeAdd extends Commande {
 
   public CommandeAdd(Interpreteur interpreteur) {
-    this.interpreteur = interpreteur;
+    super.interpreteur = interpreteur;
   }
 
   @Override
   public void execute() {
     try {
-      Composite composite = interpreteur.getComposite(this.name);
+      Composite composite = super.interpreteur.getComposite(this.name);
       if (composite == null) {
         //on crée le compositeForme si il n'existe pas
-        this.interpreteur.add(new CompositeForme(this.name));
-        composite = interpreteur.getComposite(this.name);
+        super.interpreteur.add(new CompositeForme(this.name));
+        composite = super.interpreteur.getComposite(this.name);
         if (composite instanceof CompositeForme) {
-          ((CompositeForme) composite).add(this.interpreteur.getComposite(this.readValues[1]));
+          ((CompositeForme) composite).add(super.interpreteur.getComposite(this.readValues[1]));
           CompositeFormeDAO cfDAO = new CompositeFormeDAO();
           cfDAO.create((CompositeForme) composite);
           composite.print();
         }
       } else {
-        composite = interpreteur.getComposite(this.name);
+        composite = super.interpreteur.getComposite(this.name);
         if (composite instanceof CompositeForme) {
-          ((CompositeForme) composite).add(this.interpreteur.getComposite(this.readValues[1]));
+          ((CompositeForme) composite).add(super.interpreteur.getComposite(this.readValues[1]));
           CompositeFormeDAO cfDAO = new CompositeFormeDAO();
           cfDAO.create((CompositeForme) composite);
           composite.print();

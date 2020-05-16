@@ -7,15 +7,16 @@ public class CommandeMove extends Commande {
 
   public CommandeMove(Interpreteur interpreteur) {
 
-    this.interpreteur = interpreteur;
+    super.interpreteur = interpreteur;
 
   }
+
 
   @Override
   public void execute() {
     try {
       ArrayList<Double> value = parseStringtoDouble(Arrays.copyOfRange(readValues, 1, 3));
-      Composite composite = interpreteur.getComposite(this.name);
+      Composite composite = super.interpreteur.getComposite(this.name);
 
       composite.move(value.get(0), value.get(1));
       composite.print();
