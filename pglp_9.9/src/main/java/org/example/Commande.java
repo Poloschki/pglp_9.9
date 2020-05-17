@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public abstract class Commande extends ExeptionCommande implements CommandeExecute {
   protected String[] readValues;
-  protected Interpreteur interpreteur;
+  protected Interpreteur interpreteur = new Interpreteur();
   protected String toExecute;
   protected String name;
 

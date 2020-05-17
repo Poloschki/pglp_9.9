@@ -3,6 +3,7 @@ package org.example;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class CarreDAO extends DAO<Carre> {
   @Override
@@ -104,5 +105,28 @@ public class CarreDAO extends DAO<Carre> {
       throwables.printStackTrace();
     }
     gestionBD.disconnect();
+  }
+
+  @Override
+  public ArrayList<Composite> findAll() {
+    gestionBD.connect();
+    ArrayList<Composite> listCarre = new ArrayList<>();
+    Carre carre;
+    try {
+      PreparedStatement preparedStatement = gestionBD.conn.prepareStatement(
+          "SELECT * FROM CARRE");
+      ResultSet resultSet = preparedStatement.executeQuery();
+      while (resultSet.next()) {
+        carre = new Carre(
+            resultSet.getString("nom"),
+            resultSet.getDouble("x"),
+            resultSet.getDouble("y"),
+            resultSet.getDouble("longueur"));
+        listCarre.add(carre);
+      }
+    } catch (SQLException throwables) {
+      throwables.printStackTrace();
+    }
+    return listCarre;
   }
 }

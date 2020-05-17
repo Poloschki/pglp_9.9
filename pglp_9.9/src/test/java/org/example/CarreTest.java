@@ -3,6 +3,7 @@ package org.example;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertSame;
 
 public class CarreTest {
 
@@ -15,5 +16,7 @@ public class CarreTest {
 
   @Test
   public void returnName() {
+    Carre c = new Carre("_4m:", 0, 0, 0);
+    assertSame("_4m:", c.returnName());
   }
 }

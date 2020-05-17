@@ -3,6 +3,7 @@ package org.example;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class RectangleDAO extends DAO<Rectangle> {
 
@@ -113,4 +114,29 @@ public class RectangleDAO extends DAO<Rectangle> {
     }
     gestionBD.disconnect();
   }
+
+  @Override
+  public ArrayList<Composite> findAll() {
+    gestionBD.connect();
+    ArrayList<Composite> listRect = new ArrayList<>();
+    Rectangle rect;
+    try {
+      PreparedStatement preparedStatement = gestionBD.conn.prepareStatement(
+          "SELECT * FROM RECTANGLE");
+      ResultSet resultSet = preparedStatement.executeQuery();
+      while (resultSet.next()) {
+        rect = new Rectangle(
+            resultSet.getString("nom"),
+            resultSet.getDouble("xHG"),
+            resultSet.getDouble("yHG"),
+            resultSet.getDouble("xBD"),
+            resultSet.getDouble("yBD"));
+        listRect.add(rect);
+      }
+    } catch (SQLException throwables) {
+      throwables.printStackTrace();
+    }
+    return listRect;
+  }
 }
+

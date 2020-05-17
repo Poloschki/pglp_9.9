@@ -13,6 +13,15 @@ public class Interpreteur {
     this.compositeArrayList.add(composite);
   }
 
+  public void addAll(ArrayList<Composite> composites) {
+    this.compositeArrayList.addAll(composites);
+  }
+
+  public void removeAll() {
+    this.compositeArrayList.clear();
+  }
+
+
   public void remove(Composite composite) {
     compositeArrayList.removeIf(composite::equals);
   }

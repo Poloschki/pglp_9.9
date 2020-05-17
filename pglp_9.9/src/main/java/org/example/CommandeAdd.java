@@ -16,7 +16,7 @@ public class CommandeAdd extends Commande {
         composite = super.interpreteur.getComposite(this.name);
         if (composite instanceof CompositeForme) {
           ((CompositeForme) composite).add(super.interpreteur.getComposite(this.readValues[1]));
-          CompositeFormeDAO cfDAO = new CompositeFormeDAO();
+          DAO<CompositeForme> cfDAO = DAOFactory.getCompositeFormeDAO();
           cfDAO.create((CompositeForme) composite);
           composite.print();
         }

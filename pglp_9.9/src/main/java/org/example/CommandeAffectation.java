@@ -116,7 +116,6 @@ public class CommandeAffectation extends Commande {
 
   @Override
   public void cutting() {
-    System.out.println(super.toExecute);
     this.name = super.toExecute.substring(0, super.toExecute.indexOf("="))
         .replaceAll(" ", "");
 

@@ -37,6 +37,7 @@ public class CommandeAffectationTest {
 
   @Test
   public void cutting() {
+
   }
 
   @Test

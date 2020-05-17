@@ -3,6 +3,7 @@ package org.example;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class CercleDAO extends DAO<Cercle> {
   @Override
@@ -103,4 +104,28 @@ public class CercleDAO extends DAO<Cercle> {
     }
     gestionBD.disconnect();
   }
+
+  @Override
+  public ArrayList<Composite> findAll() {
+    gestionBD.connect();
+    ArrayList<Composite> listCercle = new ArrayList<>();
+    Cercle cercle;
+    try {
+      PreparedStatement preparedStatement = gestionBD.conn.prepareStatement(
+          "SELECT * FROM CERCLE");
+      ResultSet resultSet = preparedStatement.executeQuery();
+      while (resultSet.next()) {
+        cercle = new Cercle(
+            resultSet.getString("nom"),
+            resultSet.getDouble("x"),
+            resultSet.getDouble("y"),
+            resultSet.getDouble("rayon"));
+        listCercle.add(cercle);
+      }
+    } catch (SQLException throwables) {
+      throwables.printStackTrace();
+    }
+    return listCercle;
+  }
+
 }

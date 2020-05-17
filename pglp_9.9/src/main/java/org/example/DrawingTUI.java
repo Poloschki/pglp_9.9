@@ -17,8 +17,7 @@ public class DrawingTUI {
     this.createdCommand.put("exit", new CommandeExit());
     this.createdCommand.put("add", new CommandeAdd(this.interpreteur));
     this.createdCommand.put("print", new CommandePrint(this.interpreteur));
-    GestionBD bd = new GestionBD();
-    bd.initConnection();
+    this.createdCommand.put("load", new CommandeLoad(this.interpreteur));
   }
 
   public CommandeExecute nexCommand(String input) {

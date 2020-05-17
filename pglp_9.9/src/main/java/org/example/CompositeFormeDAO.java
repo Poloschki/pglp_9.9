@@ -3,6 +3,7 @@ package org.example;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class CompositeFormeDAO extends DAO<CompositeForme> {
   @Override
@@ -84,4 +85,30 @@ public class CompositeFormeDAO extends DAO<CompositeForme> {
     }
     gestionBD.disconnect();
   }
+
+  @Override
+  public ArrayList<Composite> findAll() {
+    /*
+    gestionBD.connect();
+    ArrayList<CompositeForme> listComposite = new ArrayList<>();
+    CompositeForme composite;
+    try {
+      PreparedStatement preparedStatement = gestionBD.conn.prepareStatement(
+          "SELECT * FROM CARRE");
+      ResultSet resultSet = preparedStatement.executeQuery();
+      while (resultSet.next()){
+        composite = new Carre(
+            resultSet.getString("nom"),
+            resultSet.getDouble("x"),
+            resultSet.getDouble("y"),
+            resultSet.getDouble("longueur"));
+        listComposite.add(composite);
+      }
+    }catch (SQLException throwables) {
+      throwables.printStackTrace();
+    }
+    return listCarre;*/
+    return null;
+  }
 }
+

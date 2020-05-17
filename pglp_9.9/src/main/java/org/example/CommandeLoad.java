@@ -4,9 +4,18 @@ import java.util.Scanner;
 
 public class CommandeLoad extends Commande {
 
+  public CommandeLoad(Interpreteur interpreteur) {
+    super.interpreteur = interpreteur;
+  }
+
   public void recupereBD() {
     System.out.println("Récupération BD");
-
+    super.interpreteur.removeAll();
+    super.interpreteur.addAll((DAOFactory.getCercleDAO().findAll()));
+    super.interpreteur.addAll(DAOFactory.getCarreDAO().findAll());
+    super.interpreteur.addAll(DAOFactory.getRectangleDAO().findAll());
+    super.interpreteur.addAll(DAOFactory.getTriangleDAO().findAll());
+    System.out.println(super.interpreteur.toString());
 
     /**TODO
      * Constructeur avec interpréteur ou pas

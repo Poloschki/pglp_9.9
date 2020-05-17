@@ -3,6 +3,7 @@ package org.example;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class TriangleDAO extends DAO<Triangle> {
   @Override
@@ -115,5 +116,31 @@ public class TriangleDAO extends DAO<Triangle> {
       throwables.printStackTrace();
     }
     gestionBD.disconnect();
+  }
+
+  @Override
+  public ArrayList<Composite> findAll() {
+    gestionBD.connect();
+    ArrayList<Composite> listTri = new ArrayList<>();
+    Triangle tri;
+    try {
+      PreparedStatement preparedStatement = gestionBD.conn.prepareStatement(
+          "SELECT * FROM TRIANGLE");
+      ResultSet resultSet = preparedStatement.executeQuery();
+      while (resultSet.next()) {
+        tri = new Triangle(
+            resultSet.getString("nom"),
+            resultSet.getDouble("x1"),
+            resultSet.getDouble("y1"),
+            resultSet.getDouble("x2"),
+            resultSet.getDouble("y2"),
+            resultSet.getDouble("x3"),
+            resultSet.getDouble("y3"));
+        listTri.add(tri);
+      }
+    } catch (SQLException throwables) {
+      throwables.printStackTrace();
+    }
+    return listTri;
   }
 }

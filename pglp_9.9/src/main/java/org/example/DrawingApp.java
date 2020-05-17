@@ -14,8 +14,6 @@ public class DrawingApp {
     DrawingTUI tui = new DrawingTUI();
     CommandeExecute commande;
     tui.initalisation();
-    //  CommandeLoad load = new CommandeLoad();
-    // load.execute();
     instruction();
     Scanner input = new Scanner(System.in);
     while (true) {
@@ -49,6 +47,8 @@ public class DrawingApp {
         "move(obj,(x,y))" +
         "\n" +
         "Pour afficher les éléments créer : print" +
+        "\n" +
+        "Pour charger ou supprimer les formes se trouvant dans la base de donnée : load" +
         "\n" +
         "Pour quitter : exit ");
   }
