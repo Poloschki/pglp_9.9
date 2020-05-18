@@ -5,6 +5,14 @@ public class Carre implements Forme {
   public final Point p1;
   public final double longueur;
 
+  /**
+   * Constructeur du carré.
+   *
+   * @param nom      Nom du carré.
+   * @param x        coordonnées x du point.
+   * @param y        coordonnées y du point.
+   * @param longueur largeur du carré.
+   */
   public Carre(String nom, double x, double y, double longueur) {
     this.nom = nom;
     this.p1 = new Point(x, y);
@@ -25,10 +33,13 @@ public class Carre implements Forme {
   @Override
   public String toString() {
     return "Carre("
-        + "Nom : " + nom +
-        ", p1=" + p1.toString() +
-        ", longueur=" + longueur +
-        ')';
+        + "Nom : "
+        + nom
+        + ", p1="
+        + p1.toString()
+        + ", longueur="
+        + longueur
+        + ')';
   }
 
   @Override

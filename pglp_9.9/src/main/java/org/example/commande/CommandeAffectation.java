@@ -4,6 +4,7 @@ import org.example.figure.*;
 
 import java.util.ArrayList;
 
+
 public class CommandeAffectation extends Commande {
   private String name;
   private String type;
@@ -13,13 +14,17 @@ public class CommandeAffectation extends Commande {
     super.interpreteur = interpreteur;
   }
 
+  /**
+   * Si la forme reconnus est un cercle, on l'ajoute dans la
+   * base de donnée et on l'ajoute dans la liste de l'interpréteur.
+   */
   public void executeCercle() {
     try {
 
       Cercle c = new Cercle(this.name, value.get(0), value.get(1), value.get(2));
-      DAO<Cercle> cDAO = DAOFactory.getCercleDAO();
-      if (cDAO.find(this.name) == null) {
-        cDAO.create(c);
+      DAO<Cercle> cdao = DAOFactory.getCercleDAO();
+      if (cdao.find(this.name) == null) {
+        cdao.create(c);
         super.interpreteur.add(c);
       } else {
         printErrorNameTaken();
@@ -33,9 +38,14 @@ public class CommandeAffectation extends Commande {
     }
   }
 
+  /**
+   * Si la forme reconnus est un triangle, on l'ajoute dans la
+   * base de donnée et on l'ajoute dans la liste de l'interpréteur.
+   */
   public void executeTriangle() {
     try {
-      Triangle t = new Triangle(this.name, value.get(0), value.get(1), value.get(2), value.get(3), value.get(4), value.get(5));
+      Triangle t = new Triangle(this.name, value.get(0),
+          value.get(1), value.get(2), value.get(3), value.get(4), value.get(5));
       DAO<Triangle> dao = DAOFactory.getTriangleDAO();
       if (dao.find(this.name) == null) {
         dao.create(t);
@@ -50,12 +60,16 @@ public class CommandeAffectation extends Commande {
     }
   }
 
+  /**
+   * Si la forme reconnus est un carre, on l'ajoute dans la
+   * base de donnée et on l'ajoute dans la liste de l'interpréteur.
+   */
   public void executeCarre() {
     try {
       Carre carre = new Carre(this.name, value.get(0), value.get(1), value.get(2));
-      DAO<Carre> carreDAO = DAOFactory.getCarreDAO();
-      if (carreDAO.find(this.name) == null) {
-        carreDAO.create(carre);
+      DAO<Carre> dao = DAOFactory.getCarreDAO();
+      if (dao.find(this.name) == null) {
+        dao.create(carre);
         super.interpreteur.add(carre);
       } else {
         printErrorNameTaken();
@@ -68,14 +82,21 @@ public class CommandeAffectation extends Commande {
     }
   }
 
+  /**
+   * Si la forme reconnus est un rectangle, on ajoute la
+   * rectangle dans la base de donnée et dans la liste de l'interpréteur.
+   */
   public void excuteRectangle() {
     try {
-      Rectangle rect = new Rectangle(this.name, value.get(0), value.get(1), value.get(2), value.get(3));
+      Rectangle rect = new Rectangle(this.name, value.get(0),
+          value.get(1), value.get(2), value.get(3));
       RectangleDAO dao = new RectangleDAO();
       if (dao.find(this.name) == null) {
         dao.create(rect);
         super.interpreteur.add(rect);
-      } else printErrorNameTaken();
+      } else {
+        printErrorNameTaken();
+      }
 
     } catch (ArrayIndexOutOfBoundsException e) {
       printErrorArgument();
@@ -104,7 +125,8 @@ public class CommandeAffectation extends Commande {
       default:
     }
     try {
-      System.out.println(super.interpreteur.compositeArrayList.get(super.interpreteur.compositeArrayList.size() - 1));
+      System.out.println(super.interpreteur
+          .compositeArrayList.get(super.interpreteur.compositeArrayList.size() - 1));
     } catch (ArrayIndexOutOfBoundsException e) {
       printErrorForme();
     }
@@ -115,11 +137,13 @@ public class CommandeAffectation extends Commande {
     this.name = super.toExecute.substring(0, super.toExecute.indexOf("="))
         .replaceAll(" ", "");
 
-    this.type = super.toExecute.substring(super.toExecute.indexOf("=") + 1, super.toExecute.indexOf("("))
+    this.type = super.toExecute
+        .substring(super.toExecute.indexOf("=") + 1, super.toExecute.indexOf("("))
         .replaceAll(" ", "")
         .toLowerCase();
 
-    this.readValues = super.toExecute.substring(super.toExecute.indexOf("(") + 1)
+    this.readValues = super.toExecute
+        .substring(super.toExecute.indexOf("(") + 1)
         .replaceAll("\\(", "")
         .replaceAll("\\)", "")
         .replaceAll(" ", "")

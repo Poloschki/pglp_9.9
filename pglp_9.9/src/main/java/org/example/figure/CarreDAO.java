@@ -88,12 +88,12 @@ public class CarreDAO extends DAO<Carre> {
     gestionBD.connect();
     try {
       PreparedStatement preparedStatement = gestionBD.conn.prepareStatement(
-          "CREATE TABLE IF NOT EXISTS CARRE( " +
-              "nom varchar(100) NOT NULL," +
-              "x int(4) NOT NULL," +
-              "y int(4) NOT NULL," +
-              "longueur int(4) NOT NULL," +
-              "PRIMARY KEY (nom));");
+          "CREATE TABLE IF NOT EXISTS CARRE( "
+              + "nom varchar(100) NOT NULL,"
+              + "x int(4) NOT NULL,"
+              + "y int(4) NOT NULL,"
+              + "longueur int(4) NOT NULL,"
+              + "PRIMARY KEY (nom));");
       int set = preparedStatement.executeUpdate();
       assert set == 1;
       preparedStatement.close();

@@ -33,6 +33,11 @@ public class CompositeForme implements Composite {
     return nom;
   }
 
+  /**
+   * Permet d'ajouter un composite dans le groupe.
+   *
+   * @param forme le composite que l'on veut ajouter.
+   */
   public void add(Composite forme) {
     this.groupe.add(forme);
     CompositeFormeDAO cfd = new CompositeFormeDAO();

@@ -71,11 +71,11 @@ public class CompositeFormeDAO extends DAO<CompositeForme> {
     gestionBD.connect();
     try {
       PreparedStatement preparedStatement = gestionBD.conn.prepareStatement(
-          "CREATE TABLE IF NOT EXISTS GROUPE(" +
-              "nomGroupe varchar(100) NOT NULL," +
-              "id int(10) AUTO_INCREMENT," +
-              "nomComposite varchar(100) NOT NULL," +
-              "PRIMARY KEY (id)); ");
+          "CREATE TABLE IF NOT EXISTS GROUPE("
+              + "nomGroupe varchar(100) NOT NULL,"
+              + "id int(10) AUTO_INCREMENT,"
+              + "nomComposite varchar(100) NOT NULL,"
+              + "PRIMARY KEY (id)); ");
       int set = preparedStatement.executeUpdate();
       assert set == 1;
       preparedStatement.close();

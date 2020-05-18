@@ -5,8 +5,14 @@ import org.example.figure.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+
 public class CommandeMove extends Commande {
 
+  /**
+   * Constructeur de la commande Move.
+   *
+   * @param interpreteur l'interpréteur.
+   */
   public CommandeMove(Interpreteur interpreteur) {
 
     super.interpreteur = interpreteur;

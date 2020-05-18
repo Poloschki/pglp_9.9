@@ -9,6 +9,12 @@ public abstract class Commande extends ExeptionCommande implements CommandeExecu
   protected String name;
 
 
+  /**
+   * Récupère le tableau du split et parse tous les éléments en double.
+   *
+   * @param list le tableau donné par le split.
+   * @return une arrayList des éléments parsé en double.
+   */
   public ArrayList<Double> parseStringtoDouble(String[] list) {
     ArrayList<Double> afterParse = new ArrayList<>();
     for (String s : list) {

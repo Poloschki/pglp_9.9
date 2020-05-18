@@ -93,13 +93,13 @@ public class RectangleDAO extends DAO<Rectangle> {
     gestionBD.connect();
     try {
       PreparedStatement preparedStatement = gestionBD.conn.prepareStatement(
-          "CREATE TABLE IF NOT EXISTS RECTANGLE( " +
-              "nom varchar(100) NOT NULL," +
-              "xHG int(4) NOT NULL," +
-              "yHG int(4) NOT NULL," +
-              "xBD int(4) NOT NULL," +
-              "yBD int(4) NOT NULL," +
-              "PRIMARY KEY (nom));");
+          "CREATE TABLE IF NOT EXISTS RECTANGLE( "
+              + "nom varchar(100) NOT NULL,"
+              + "xHG int(4) NOT NULL,"
+              + "yHG int(4) NOT NULL,"
+              + "xBD int(4) NOT NULL,"
+              + "yBD int(4) NOT NULL,"
+              + "PRIMARY KEY (nom));");
       int set = preparedStatement.executeUpdate();
       assert set == 1;
       preparedStatement.close();

@@ -19,38 +19,53 @@ public class GestionBD {
     stmt = null;
   }
 
+  /**
+   * Permet d'établir la connexion avec la base de donnée.
+   */
   public void connect() {
     try {
       Class.forName(JDBC_DRIVER).newInstance();
       this.conn = DriverManager.getConnection(DB_URL, USER, PASS);
 
-    } catch (SQLException | ClassNotFoundException | InstantiationException | IllegalAccessException e) {
+    } catch (SQLException | ClassNotFoundException
+        | InstantiationException | IllegalAccessException e) {
       e.printStackTrace();
     }
   }
 
+  /**
+   * Permet de terminer correctement la connexion avec
+   * la base de donnée.
+   */
   public void disconnect() {
     try {
-      if (stmt != null) stmt.close();
+      if (stmt != null) {
+        stmt.close();
+      }
     } catch (SQLException ignored) {
       ignored.printStackTrace();
     }
     try {
-      if (conn != null) conn.close();
+      if (conn != null) {
+        conn.close();
+      }
     } catch (SQLException se) {
       se.printStackTrace();
     }
   }
 
+  /**
+   * Supprime tout le contenus de la base de donnée.
+   */
   public void endConnection() {
     this.connect();
     try {
       PreparedStatement preparedStatement = this.conn.prepareStatement(
-          "DROP Table IF EXISTS CERCLE;" +
-              "DROP TABLE IF EXISTS CARRE;" +
-              "DROP TABLE IF EXISTS TRIANGLE;" +
-              "DROP TABLE IF EXISTS RECTANGLE;" +
-              "DROP TABLE IF EXISTS GROUPE");
+          "DROP Table IF EXISTS CERCLE;"
+              + "DROP TABLE IF EXISTS CARRE;"
+              + "DROP TABLE IF EXISTS TRIANGLE;"
+              + "DROP TABLE IF EXISTS RECTANGLE;"
+              + "DROP TABLE IF EXISTS GROUPE");
       int resultSet = preparedStatement.executeUpdate();
       preparedStatement.close();
       assert resultSet == 1;
@@ -60,6 +75,10 @@ public class GestionBD {
     this.disconnect();
   }
 
+  /**
+   * Initialise la connection avec la base de donnée
+   * en créant toutes les tables pour les formes.
+   */
   public void initConnection() {
     this.connect();
     CercleDAO cercleDAO = new CercleDAO();

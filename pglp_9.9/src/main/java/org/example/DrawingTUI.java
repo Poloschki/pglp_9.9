@@ -14,6 +14,9 @@ public class DrawingTUI {
     this.interpreteur = new Interpreteur();
   }
 
+  /**
+   * Initialise les commandes accessible à l'utilisateur.
+   */
   public void initalisation() {
     this.createdCommand.put("move", new CommandeMove(this.interpreteur));
     this.createdCommand.put("=", new CommandeAffectation(this.interpreteur));
@@ -23,6 +26,12 @@ public class DrawingTUI {
     this.createdCommand.put("load", new CommandeLoad(this.interpreteur));
   }
 
+  /**
+   * À partir de l'entrée de l'utilisateur on retourne la commande saisie.
+   *
+   * @param input entrée de l'utilisateur.
+   * @return la commande compris.
+   */
   public CommandeExecute nexCommand(String input) {
     for (String testKey : this.createdCommand.keySet()) {
       if (input.contains(testKey)) {

@@ -4,14 +4,23 @@ import org.example.commande.CommandeExecute;
 
 import java.util.Scanner;
 
+
 public class DrawingApp {
 
+  /**
+   * Main.
+   *
+   * @param args argument du main.
+   */
   public static void main(String[] args) {
 
     DrawingApp drawingApp = new DrawingApp();
     drawingApp.run();
   }
 
+  /**
+   * Permet de lancer l'exécution.
+   */
   public void run() {
     DrawingTUI tui = new DrawingTUI();
     CommandeExecute commande;
@@ -30,28 +39,31 @@ public class DrawingApp {
 
   }
 
+  /**
+   * Affiche le commande accessible à l'utilisateur.
+   */
   public void instruction() {
-    System.out.println("Pour créer une forme " +
-        "nom = forme([coordonnée],[rayon],.. )" +
-        "\n" +
-        "Cercle((x,y),rayon) " +
-        "-----------------------" +
-        " Carre((x,y),longueur)" +
-        "\n" +
-        "Rectangle(xHG, yHG, xBD, yBD)" +
-        "-------------- " +
-        "Triangle(x1,y1,x2,y2,x3,y3)" +
-        "\n" +
-        "Pour créer un groupe : " +
-        "add(nomDuGroupe,forme ou groupe)" +
-        "\n" +
-        "Pour les déplacements : " +
-        "move(obj,(x,y))" +
-        "\n" +
-        "Pour afficher les éléments créer : print" +
-        "\n" +
-        "Pour charger ou supprimer les formes se trouvant dans la base de donnée : load" +
-        "\n" +
-        "Pour quitter : exit ");
+    System.out.println("Pour créer une forme "
+        + "nom = forme([coordonnée],[rayon],.. )"
+        + "\n"
+        + "Cercle((x,y),rayon) "
+        + "-----------------------"
+        + " Carre((x,y),longueur)"
+        + "\n"
+        + "Rectangle(xHG, yHG, xBD, yBD)"
+        + "-------------- "
+        + "Triangle(x1,y1,x2,y2,x3,y3)"
+        + "\n"
+        + "Pour créer un groupe : "
+        + "add(nomDuGroupe,forme ou groupe)"
+        + "\n"
+        + "Pour les déplacements : "
+        + "move(obj,(x,y))"
+        + "\n"
+        + "Pour afficher les éléments créer : print"
+        + "\n"
+        + "Pour charger ou supprimer les formes se trouvant dans la base de donnée : load"
+        + "\n"
+        + "Pour quitter : exit ");
   }
 }

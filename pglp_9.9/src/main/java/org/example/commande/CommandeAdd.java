@@ -1,6 +1,8 @@
 package org.example.commande;
 
-import org.example.figure.*;
+import org.example.figure.Composite;
+import org.example.figure.CompositeForme;
+import org.example.figure.DAOFactory;
 
 public class CommandeAdd extends Commande {
 
@@ -18,16 +20,14 @@ public class CommandeAdd extends Commande {
         composite = super.interpreteur.getComposite(this.name);
         if (composite instanceof CompositeForme) {
           ((CompositeForme) composite).add(super.interpreteur.getComposite(this.readValues[1]));
-          DAO<CompositeForme> cfDAO = DAOFactory.getCompositeFormeDAO();
-          cfDAO.create((CompositeForme) composite);
+          DAOFactory.getCompositeFormeDAO().create((CompositeForme) composite);
           composite.print();
         }
       } else {
         composite = super.interpreteur.getComposite(this.name);
         if (composite instanceof CompositeForme) {
           ((CompositeForme) composite).add(super.interpreteur.getComposite(this.readValues[1]));
-          CompositeFormeDAO cfDAO = new CompositeFormeDAO();
-          cfDAO.create((CompositeForme) composite);
+          DAOFactory.getCompositeFormeDAO().create((CompositeForme) composite);
           composite.print();
         }
 
