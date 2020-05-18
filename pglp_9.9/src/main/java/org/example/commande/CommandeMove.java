@@ -1,9 +1,11 @@
 package org.example.commande;
 
-import org.example.figure.*;
-
 import java.util.ArrayList;
 import java.util.Arrays;
+
+import org.example.figure.*;
+
+
 
 
 public class CommandeMove extends Commande {
@@ -51,6 +53,12 @@ public class CommandeMove extends Commande {
       printErrorNullPointer();
 
     }
+  }
+
+  @Override
+  public void instruction() {
+    System.out.println("move(nom_composite, x,y ) --> "
+        + "Permet de déplacer le composite selon x et y");
   }
 
   @Override

@@ -7,4 +7,9 @@ public class CommandeExit implements CommandeExecute {
     System.exit(0);
   }
 
+  @Override
+  public void instruction() {
+    System.out.println("exit --> Permet de quitter le programme");
+  }
+
 }

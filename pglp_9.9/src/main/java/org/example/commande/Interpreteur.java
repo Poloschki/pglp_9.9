@@ -1,8 +1,9 @@
 package org.example.commande;
 
+import java.util.ArrayList;
+
 import org.example.figure.Composite;
 
-import java.util.ArrayList;
 
 
 public class Interpreteur {
@@ -41,10 +42,8 @@ public class Interpreteur {
         return composite;
       }
     }
-
     return null;
   }
-
 
   @Override
   public String toString() {

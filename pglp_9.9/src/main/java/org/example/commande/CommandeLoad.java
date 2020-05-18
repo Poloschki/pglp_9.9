@@ -64,6 +64,12 @@ public class CommandeLoad extends Commande {
   }
 
   @Override
+  public void instruction() {
+    System.out.println("load --> Permet de charger ou supprimer le contenus "
+        + "de la base de donnée");
+  }
+
+  @Override
   public void cutting() {
   }
 

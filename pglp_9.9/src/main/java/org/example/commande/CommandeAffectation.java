@@ -133,6 +133,12 @@ public class CommandeAffectation extends Commande {
   }
 
   @Override
+  public void instruction() {
+    System.out.println("nom_forme = forme (paramètres) -->"
+        + " Création d'une nouvelle forme");
+  }
+
+  @Override
   public void cutting() {
     this.name = super.toExecute.substring(0, super.toExecute.indexOf("="))
         .replaceAll(" ", "");

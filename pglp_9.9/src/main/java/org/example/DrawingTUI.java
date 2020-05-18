@@ -1,8 +1,16 @@
 package org.example;
 
-import org.example.commande.*;
-
 import java.util.HashMap;
+
+import org.example.commande.Commande;
+import org.example.commande.CommandeAdd;
+import org.example.commande.CommandeAffectation;
+import org.example.commande.CommandeExecute;
+import org.example.commande.CommandeExit;
+import org.example.commande.CommandeLoad;
+import org.example.commande.CommandeMove;
+import org.example.commande.CommandePrint;
+import org.example.commande.Interpreteur;
 
 
 public class DrawingTUI {
@@ -20,9 +28,9 @@ public class DrawingTUI {
   public void initalisation() {
     this.createdCommand.put("move", new CommandeMove(this.interpreteur));
     this.createdCommand.put("=", new CommandeAffectation(this.interpreteur));
-    this.createdCommand.put("exit", new CommandeExit());
     this.createdCommand.put("add", new CommandeAdd(this.interpreteur));
     this.createdCommand.put("print", new CommandePrint(this.interpreteur));
+    this.createdCommand.put("exit", new CommandeExit());
     this.createdCommand.put("load", new CommandeLoad(this.interpreteur));
   }
 

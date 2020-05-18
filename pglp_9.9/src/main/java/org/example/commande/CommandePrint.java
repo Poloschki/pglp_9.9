@@ -15,4 +15,9 @@ public class CommandePrint implements CommandeExecute {
     }
   }
 
+  @Override
+  public void instruction() {
+    System.out.println("print --> Permet d'afficher le contenus local");
+  }
+
 }

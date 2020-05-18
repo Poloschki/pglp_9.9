@@ -43,6 +43,12 @@ public class CommandeAdd extends Commande {
   }
 
   @Override
+  public void instruction() {
+    System.out.println("Add(nom_du_groupe, nom_du_composite) --> "
+        + "Permet d'ajouter un composite dans un groupe");
+  }
+
+  @Override
   public void cutting() {
     this.readValues = super.toExecute.replaceAll("add", "")
         .replaceAll("\\(", "")
