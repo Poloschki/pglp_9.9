@@ -29,8 +29,9 @@ public class CommandeLoad extends Commande {
   }
 
   public boolean readInput(String string) {
-    return string.toLowerCase().contains("y") || string.toLowerCase().matches("oui") || string.toLowerCase().startsWith("o");
+    return string.toLowerCase().contains("y") || string.toLowerCase().replaceAll(" ", "").matches("oui") || string.toLowerCase().startsWith("o");
   }
+
 
   @Override
   public void execute() {

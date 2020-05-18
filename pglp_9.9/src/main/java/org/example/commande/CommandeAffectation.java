@@ -17,9 +17,8 @@ public class CommandeAffectation extends Commande {
     try {
 
       Cercle c = new Cercle(this.name, value.get(0), value.get(1), value.get(2));
-      CercleDAO cDAO = new CercleDAO();
-      Cercle c2 = cDAO.find(this.name);
-      if (c2 == null) {
+      DAO<Cercle> cDAO = DAOFactory.getCercleDAO();
+      if (cDAO.find(this.name) == null) {
         cDAO.create(c);
         super.interpreteur.add(c);
       } else {
@@ -37,9 +36,8 @@ public class CommandeAffectation extends Commande {
   public void executeTriangle() {
     try {
       Triangle t = new Triangle(this.name, value.get(0), value.get(1), value.get(2), value.get(3), value.get(4), value.get(5));
-      TriangleDAO dao = new TriangleDAO();
-      Triangle t2 = dao.find(this.name);
-      if (t2 == null) {
+      DAO<Triangle> dao = DAOFactory.getTriangleDAO();
+      if (dao.find(this.name) == null) {
         dao.create(t);
         super.interpreteur.add(t);
       } else {
@@ -55,9 +53,8 @@ public class CommandeAffectation extends Commande {
   public void executeCarre() {
     try {
       Carre carre = new Carre(this.name, value.get(0), value.get(1), value.get(2));
-      CarreDAO carreDAO = new CarreDAO();
-      Carre c1 = carreDAO.find(this.name);
-      if (c1 == null) {
+      DAO<Carre> carreDAO = DAOFactory.getCarreDAO();
+      if (carreDAO.find(this.name) == null) {
         carreDAO.create(carre);
         super.interpreteur.add(carre);
       } else {
@@ -75,8 +72,7 @@ public class CommandeAffectation extends Commande {
     try {
       Rectangle rect = new Rectangle(this.name, value.get(0), value.get(1), value.get(2), value.get(3));
       RectangleDAO dao = new RectangleDAO();
-      Rectangle r1 = dao.find(this.name);
-      if (r1 == null) {
+      if (dao.find(this.name) == null) {
         dao.create(rect);
         super.interpreteur.add(rect);
       } else printErrorNameTaken();
