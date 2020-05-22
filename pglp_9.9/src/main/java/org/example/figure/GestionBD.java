@@ -81,16 +81,11 @@ public class GestionBD {
    */
   public void initConnection() {
     this.connect();
-    CercleDAO cercleDAO = new CercleDAO();
-    cercleDAO.createTable();
-    CarreDAO carreDAO = new CarreDAO();
-    carreDAO.createTable();
-    RectangleDAO rectangleDAO = new RectangleDAO();
-    rectangleDAO.createTable();
-    TriangleDAO triangleDAO = new TriangleDAO();
-    triangleDAO.createTable();
-    CompositeFormeDAO compositeFormeDAO = new CompositeFormeDAO();
-    compositeFormeDAO.createTable();
+    DAOFactory.getCercleDAO().createTable();
+    DAOFactory.getCarreDAO().createTable();
+    DAOFactory.getCompositeFormeDAO().createTable();
+    DAOFactory.getRectangleDAO().createTable();
+    DAOFactory.getTriangleDAO().createTable();
     this.disconnect();
   }
 
