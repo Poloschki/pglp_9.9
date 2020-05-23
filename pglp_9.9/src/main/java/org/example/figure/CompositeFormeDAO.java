@@ -87,27 +87,22 @@ public class CompositeFormeDAO extends DAO<CompositeForme> {
 
   @Override
   public ArrayList<Composite> findAll() {
-    /*
+
     gestionBD.connect();
-    ArrayList<CompositeForme> listComposite = new ArrayList<>();
+    ArrayList<Composite> listComposite = new ArrayList<>();
     CompositeForme composite;
     try {
       PreparedStatement preparedStatement = gestionBD.conn.prepareStatement(
-          "SELECT * FROM CARRE");
+          "SELECT * FROM GROUPE");
       ResultSet resultSet = preparedStatement.executeQuery();
       while (resultSet.next()){
-        composite = new Carre(
-            resultSet.getString("nom"),
-            resultSet.getDouble("x"),
-            resultSet.getDouble("y"),
-            resultSet.getDouble("longueur"));
+        composite = new CompositeForme(resultSet.getString("nomGroupe"));
         listComposite.add(composite);
       }
     }catch (SQLException throwables) {
       throwables.printStackTrace();
     }
-    return listCarre;*/
-    return null;
+    return listComposite;
   }
 }
 
