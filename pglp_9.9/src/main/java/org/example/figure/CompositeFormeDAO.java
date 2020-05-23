@@ -95,11 +95,11 @@ public class CompositeFormeDAO extends DAO<CompositeForme> {
       PreparedStatement preparedStatement = gestionBD.conn.prepareStatement(
           "SELECT * FROM GROUPE");
       ResultSet resultSet = preparedStatement.executeQuery();
-      while (resultSet.next()){
+      while (resultSet.next()) {
         composite = new CompositeForme(resultSet.getString("nomGroupe"));
         listComposite.add(composite);
       }
-    }catch (SQLException throwables) {
+    } catch (SQLException throwables) {
       throwables.printStackTrace();
     }
     return listComposite;

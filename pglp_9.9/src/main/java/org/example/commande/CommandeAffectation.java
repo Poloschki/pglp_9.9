@@ -1,8 +1,13 @@
 package org.example.commande;
 
-import org.example.figure.*;
-
 import java.util.ArrayList;
+import org.example.figure.Carre;
+import org.example.figure.Cercle;
+import org.example.figure.DAO;
+import org.example.figure.DAOFactory;
+import org.example.figure.Rectangle;
+import org.example.figure.RectangleDAO;
+import org.example.figure.Triangle;
 
 
 public class CommandeAffectation extends Commande {

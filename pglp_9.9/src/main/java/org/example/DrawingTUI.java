@@ -1,7 +1,6 @@
 package org.example;
 
 import java.util.HashMap;
-
 import org.example.commande.Commande;
 import org.example.commande.CommandeAdd;
 import org.example.commande.CommandeAffectation;

@@ -1,7 +1,6 @@
 package org.example.commande;
 
 import java.util.ArrayList;
-
 import org.example.figure.Composite;
 
 

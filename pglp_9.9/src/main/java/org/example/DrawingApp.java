@@ -1,11 +1,9 @@
 package org.example;
 
-import org.example.commande.CommandeExecute;
-
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
-
+import org.example.commande.CommandeExecute;
 
 public class DrawingApp {
 

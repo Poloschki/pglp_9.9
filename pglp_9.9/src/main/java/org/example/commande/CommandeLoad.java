@@ -1,9 +1,9 @@
 package org.example.commande;
 
+import java.util.Scanner;
 import org.example.figure.DAOFactory;
 import org.example.figure.GestionBD;
 
-import java.util.Scanner;
 
 
 public class CommandeLoad extends Commande {

@@ -1,13 +1,15 @@
 package org.example.figure;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.sql.Statement;
 
 public class GestionBD {
-  // JDBC driver name and database URL
+
   static final String JDBC_DRIVER = "org.h2.Driver";
   static final String DB_URL = "jdbc:h2:./DB/DrawingApp";
-
-  //  Database credentials
   static final String USER = "sa";
   static final String PASS = "sa";
 

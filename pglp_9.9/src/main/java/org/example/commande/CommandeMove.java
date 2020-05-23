@@ -2,10 +2,13 @@ package org.example.commande;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-
-import org.example.figure.*;
-
-
+import org.example.figure.Carre;
+import org.example.figure.Cercle;
+import org.example.figure.Composite;
+import org.example.figure.CompositeForme;
+import org.example.figure.DAOFactory;
+import org.example.figure.Rectangle;
+import org.example.figure.Triangle;
 
 
 public class CommandeMove extends Commande {
